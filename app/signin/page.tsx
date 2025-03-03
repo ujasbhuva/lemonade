@@ -28,6 +28,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 // Login validation schema
 const loginSchema = z.object({
@@ -87,10 +88,10 @@ export default function LoginPage() {
             </div>
           </div>
         </Link>
-
         <Card className="border rounded-3xl flex flex-col md:flex-row overflow-hidden">
           {/* Left side - Login Form */}
           <div className="w-full md:w-1/2 p-2">
+            <ThemeToggle />
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-light text-center">
                 Sign in

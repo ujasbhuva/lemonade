@@ -11,12 +11,13 @@ import "../../app/globals.css";
 const archivo = Archivo({
   subsets: ["latin"],
   weight: ["100", "200", "300"], // Including thin (100) weight
+  variable: "--font-archivo",
 });
+
 
 export const metadata: Metadata = {
   title: "Lemonade Dashboard",
   description: "Project management dashboard for Lemonade",
-  generator: "v0.dev",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${archivo.className} font-thin`}>
+      <body className={`${archivo.variable}`}>
         <Providers>
           <SidebarProvider>
             <AppSidebar />

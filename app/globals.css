@@ -81,6 +81,7 @@
   }
   body {
     @apply bg-background text-foreground font-thin;
+    font-family: var(--font-archivo);
   }
   h1,
   h2,
@@ -154,4 +155,3 @@
     @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent hover:scrollbar-thumb-accent/80;
   }
 }
-

@@ -18,6 +18,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 import dynamic from "next/dynamic";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 export default function SignupPage() {
@@ -108,6 +109,7 @@ export default function SignupPage() {
         <Card className="w-full rounded-3xl flex flex-col md:flex-row overflow-hidden">
           {/* Left side - Signup Form */}
           <div className="w-full md:w-1/2 p-2">
+            <ThemeToggle />
             <CardHeader className="pb-4">
               <div className="w-full mb-4">
                 <Progress value={(step / 4) * 100} className="h-1" />

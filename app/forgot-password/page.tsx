@@ -1,12 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { Citrus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
@@ -15,6 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import ThemeToggle from "@/components/ui/theme-toggle";
+import { Citrus } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,17 +24,17 @@ export default function ForgotPasswordPage() {
   const handleSendResetLink = () => {
     if (!email) return;
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
       setStage("reset");
     }, 1500);
   };
-  
+
   const handleResetPassword = () => {
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
@@ -57,14 +57,15 @@ export default function ForgotPasswordPage() {
           </div>
         </Link>
 
-        <Card className="border shadow-lg rounded-3xl">
+        <Card className="border rounded-3xl">
           <CardHeader className="space-y-1">
+            <ThemeToggle />
             <CardTitle className="text-2xl font-light text-center">
               {stage === "email" ? "Forgot password?" : "Reset password"}
             </CardTitle>
             <CardDescription className="text-center">
-              {stage === "email" 
-                ? "No worries, we'll send you reset instructions" 
+              {stage === "email"
+                ? "No worries, we'll send you reset instructions"
                 : "Enter your new password below"}
             </CardDescription>
           </CardHeader>
@@ -73,20 +74,22 @@ export default function ForgotPasswordPage() {
             {stage === "email" ? (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="font-light px-1">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="name@example.com" 
+                  <Label htmlFor="email" className="font-light px-1">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
                     className="rounded-xl px-5"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required 
+                    required
                   />
                 </div>
 
-                <Button 
-                  type="button" 
+                <Button
+                  type="button"
                   className="w-full rounded-xl"
                   onClick={handleSendResetLink}
                   disabled={isLoading || !email}
@@ -97,45 +100,46 @@ export default function ForgotPasswordPage() {
             ) : (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="new-password" className="font-light px-1">New Password</Label>
-                  <Input 
-                    id="new-password" 
-                    type="password" 
+                  <Label htmlFor="new-password" className="font-light px-1">
+                    New Password
+                  </Label>
+                  <Input
+                    id="new-password"
+                    type="password"
                     className="rounded-xl px-5"
-                    required 
+                    required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirm-password" className="font-light px-1">Confirm Password</Label>
-                  <Input 
-                    id="confirm-password" 
-                    type="password" 
+                  <Label htmlFor="confirm-password" className="font-light px-1">
+                    Confirm Password
+                  </Label>
+                  <Input
+                    id="confirm-password"
+                    type="password"
                     className="rounded-xl px-5"
-                    required 
+                    required
                   />
                 </div>
 
                 <div className="flex flex-col gap-2 text-sm">
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
-                    </div>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200"></div>
                     <p>At least 8 characters</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
-                    </div>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200"></div>
                     <p>At least 1 uppercase letter</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
-                    </div>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200"></div>
                     <p>At least 1 number</p>
                   </div>
                 </div>
 
-                <Button 
-                  type="button" 
+                <Button
+                  type="button"
                   className="w-full rounded-xl"
                   onClick={handleResetPassword}
                   disabled={isLoading}
@@ -146,8 +150,7 @@ export default function ForgotPasswordPage() {
             )}
           </CardContent>
 
-          <CardFooter className="flex flex-col space-y-2">
-          </CardFooter>
+          <CardFooter className="flex flex-col space-y-2"></CardFooter>
         </Card>
 
         <div className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground">
