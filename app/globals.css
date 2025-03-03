@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Lime colors from Tailwind */
+    --primary: 84 81% 44%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 84 81% 92%;
+    --accent-foreground: 84 81% 14%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 84 81% 44%;
+    --radius: 9999px;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 84 81% 99%;
+    --sidebar-foreground: 84 81% 14%;
+    --sidebar-primary: 84 81% 44%;
+    --sidebar-primary-foreground: 355.7 100% 97.3%;
+    --sidebar-accent: 84 81% 92%;
+    --sidebar-accent-foreground: 84 81% 14%;
+    --sidebar-border: 84 81% 85%;
+    --sidebar-ring: 84 81% 44%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Dark mode lime */
+    --primary: 84 81% 34%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 84 81% 24%;
+    --accent-foreground: 355.7 100% 97.3%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 84 81% 34%;
+
+    /* Dark mode sidebar */
+    --sidebar-background: 84 81% 5%;
+    --sidebar-foreground: 355.7 100% 97.3%;
+    --sidebar-primary: 355.7 100% 97.3%;
+    --sidebar-primary-foreground: 84 81% 14%;
+    --sidebar-accent: 84 81% 24%;
+    --sidebar-accent-foreground: 355.7 100% 97.3%;
+    --sidebar-border: 84 81% 20%;
+    --sidebar-ring: 84 81% 34%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-thin;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-thin tracking-wide;
+  }
+  p,
+  span,
+  div {
+    @apply font-thin;
+  }
+  button,
+  a {
+    @apply font-thin tracking-wide;
+  }
+
+  /* Fully rounded interactive elements */
+  .btn,
+  .button,
+  .input,
+  .select,
+  .dropdown-trigger,
+  .badge {
+    @apply rounded-full px-6 py-3;
+  }
+
+  /* More rounded textarea */
+  .textarea {
+    @apply rounded-3xl px-6 py-4;
+  }
+
+  /* Ensure dropdown menus and popovers have consistent rounding */
+  .dropdown-content,
+  .popover-content,
+  .dialog-content {
+    @apply rounded-2xl;
+  }
+
+  /* Calendar and date picker specific styles */
+  .calendar-day {
+    @apply rounded-full;
+  }
+
+  /* Progress bars */
+  .progress-bar {
+    @apply rounded-full;
+  }
+
+  /* Table styles */
+  .table-container {
+    @apply rounded-2xl overflow-hidden border border-border;
+  }
+
+  /* Card styles */
+  .card {
+    @apply rounded-2xl border border-border;
+  }
+
+  /* Notification styles */
+  .notification {
+    @apply rounded-2xl border border-border p-4;
+  }
+}
+
+/* Custom scrollbar */
+@layer utilities {
+  .scrollbar-custom {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent hover:scrollbar-thumb-accent/80;
+  }
+}
+
