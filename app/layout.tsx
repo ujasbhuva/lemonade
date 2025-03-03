@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 // Use Archivo with thin weight
 const archivo = Archivo({
@@ -13,8 +14,7 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: "Lemonade - Ready to use nextjs theme",
-  description:
-    "The comprehensive Ready to use nextjs theme",
+  description: "The comprehensive Ready to use nextjs theme",
 };
 
 export default function MarketingLayout({
@@ -25,7 +25,12 @@ export default function MarketingLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={archivo.variable}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="absolute top-0 left-0 right-0 z-10 w-full flex items-center justify-end p-4">
+            <ThemeToggle />
+          </div>
+          {children}
+        </Providers>
       </body>
     </html>
   );

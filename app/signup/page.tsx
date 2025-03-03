@@ -5,7 +5,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Citrus, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -111,18 +111,19 @@ export default function SignupPage() {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-thin tracking-tight">
-            Create an account
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {showOtpForm
-              ? `Enter the verification code sent to ${email}`
-              : "Enter your email below to create your account"}
-          </p>
-        </div>
+        <Link href="/">
+          <div className="flex items-center px-6 py-4 w-full justify-center">
+            <Citrus
+              className="h-8 w-8 text-primary rotate-45"
+              strokeWidth={"1.5"}
+            />
+            <div className="flex flex-col">
+              <span className="font-light text-3xl text-primary">Lemonade</span>
+            </div>
+          </div>
+        </Link>
 
-        <Card className="border-0 shadow-lg">
+        <Card className="shadow-lg border">
           <CardHeader className="space-y-1">
             <CardTitle className="text-xl font-thin text-center">
               {showOtpForm ? "Verify your email" : "Sign up"}
