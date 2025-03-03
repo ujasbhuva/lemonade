@@ -1,24 +1,24 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
+import loginAnimation from "@/animations/login.json"; // You'll need to add this JSON file
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight, Citrus } from "lucide-react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ArrowRight, Citrus } from "lucide-react";
-import Lottie from "lottie-react";
-import loginAnimation from "@/animations/login.json"; // You'll need to add this JSON file
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -27,6 +27,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 // Login validation schema
 const loginSchema = z.object({
@@ -135,7 +136,9 @@ export default function LoginPage() {
                             className="px-0 font-light h-auto text-xs"
                             asChild
                           >
-                            <Link href="/forgot-password">Forgot password?</Link>
+                            <Link href="/forgot-password">
+                              Forgot password?
+                            </Link>
                           </Button>
                         </div>
                         <FormControl>
@@ -201,12 +204,12 @@ export default function LoginPage() {
               </Button>
             </CardContent>
           </div>
-          
+
           {/* Right side - Lottie Animation */}
           <div className="hidden md:flex md:w-1/2 bg-primary/5 items-center justify-center">
             <div className="relative w-full h-full flex items-center justify-center">
-              <Lottie 
-                animationData={loginAnimation} 
+              <Lottie
+                animationData={loginAnimation}
                 loop={true}
                 className="w-full max-w-md"
               />

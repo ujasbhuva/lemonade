@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import signupAnimation from "@/animations/login.json"; // You'll need to add this JSON file
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,16 +9,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { Check, Citrus } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
-import Lottie from "lottie-react";
-import signupAnimation from "@/animations/login.json"; // You'll need to add this JSON file
+import React, { useState } from "react";
 
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 export default function SignupPage() {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
@@ -200,7 +202,10 @@ export default function SignupPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="confirmPassword" className="font-light px-1">
+                    <Label
+                      htmlFor="confirmPassword"
+                      className="font-light px-1"
+                    >
                       Confirm password
                     </Label>
                     <Input
@@ -235,7 +240,9 @@ export default function SignupPage() {
                     <div className="flex items-center gap-2">
                       <div
                         className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          /[A-Z]/.test(password) ? "bg-green-500" : "bg-gray-200"
+                          /[A-Z]/.test(password)
+                            ? "bg-green-500"
+                            : "bg-gray-200"
                         }`}
                       >
                         {/[A-Z]/.test(password) && (
@@ -247,7 +254,9 @@ export default function SignupPage() {
                     <div className="flex items-center gap-2">
                       <div
                         className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          /[0-9]/.test(password) ? "bg-green-500" : "bg-gray-200"
+                          /[0-9]/.test(password)
+                            ? "bg-green-500"
+                            : "bg-gray-200"
                         }`}
                       >
                         {/[0-9]/.test(password) && (
@@ -324,7 +333,9 @@ export default function SignupPage() {
               {step === 2 && (
                 <Button
                   onClick={handleSubmitPassword}
-                  disabled={!password || password !== confirmPassword || loading}
+                  disabled={
+                    !password || password !== confirmPassword || loading
+                  }
                   className="rounded-full"
                 >
                   {loading ? "Processing..." : "Continue"}
@@ -351,12 +362,12 @@ export default function SignupPage() {
               )}
             </CardFooter>
           </div>
-          
+
           {/* Right side - Lottie Animation */}
           <div className="hidden md:flex md:w-1/2 bg-primary/5 items-center justify-center p-6">
             <div className="relative w-full h-full flex items-center justify-center">
-              <Lottie 
-                animationData={signupAnimation} 
+              <Lottie
+                animationData={signupAnimation}
                 loop={true}
                 className="w-full max-w-md"
               />
@@ -364,7 +375,7 @@ export default function SignupPage() {
               <div className="absolute bottom-8 left-0 right-0 flex justify-center">
                 <div className="flex gap-2">
                   {[1, 2, 3, 4].map((stepNumber) => (
-                    <div 
+                    <div
                       key={stepNumber}
                       className={`w-2 h-2 rounded-full ${
                         stepNumber === step ? "bg-primary" : "bg-gray-300"
