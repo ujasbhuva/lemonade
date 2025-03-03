@@ -74,27 +74,11 @@ export default function CalendarPage() {
   const weekDays = Array.from({ length: 7 }, (_, i) => addDays(currentWeek, i));
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)]">
+    <div className="flex flex-col h-[calc(100vh-4rem)] ">
       <header className="border-b">
-        <div className="container flex h-16 items-center justify-between px-4">
+        <div className="container flex px-4 h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <h1 className="text-lg font-light">Calendar</h1>
-            <Tabs
-              defaultValue={view}
-              onValueChange={(v) => setView(v as "month" | "week" | "day")}
-            >
-              <TabsList className="grid w-[300px] grid-cols-3 gap-4 rounded-full p-1">
-                <TabsTrigger value="month" className="rounded-full">
-                  Month
-                </TabsTrigger>
-                <TabsTrigger value="week" className="rounded-full">
-                  Week
-                </TabsTrigger>
-                <TabsTrigger value="day" className="rounded-full">
-                  Day
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -140,7 +124,7 @@ export default function CalendarPage() {
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={setDate}
+                onSelect={setDate as any}
                 className="rounded-xl border"
                 classNames={{
                   day_selected:

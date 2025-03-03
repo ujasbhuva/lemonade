@@ -1,9 +1,10 @@
 import type React from "react";
-import type { Metadata } from "next/metadata";
-import { Archivo } from "next/font/google";
-import { Providers } from "@/components/providers";
+
 import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { Providers } from "@/components/providers";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Metadata } from "next";
+import { Archivo } from "next/font/google";
 import "../../app/globals.css";
 
 // Use Archivo with thin weight

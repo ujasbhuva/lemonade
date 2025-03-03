@@ -213,17 +213,17 @@ export function AppSidebar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="rounded-xl">
               <DropdownMenuItem asChild>
-                <Link href="/help" className="rounded-lg px-4 py-2">
+                <Link href="/webapp/help" className="rounded-lg px-4 py-2">
                   Help
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/documentation" className="rounded-lg px-4 py-2">
+                <Link href="/webapp/documentation" className="rounded-lg px-4 py-2">
                   Documentation
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/about" className="rounded-lg px-4 py-2">
+                <Link href="/webapp/about" className="rounded-lg px-4 py-2">
                   About
                 </Link>
               </DropdownMenuItem>

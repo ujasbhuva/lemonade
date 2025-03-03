@@ -57,7 +57,7 @@ export default function ComponentsPage() {
     <div className="flex flex-col">
       <header className="border-b">
         <div className="container flex h-16 items-center px-4">
-          <h1 className="text-lg font-semibold">Components</h1>
+          <h1 className="text-lg font-light">Components</h1>
         </div>
       </header>
       <main className="flex-1 p-4 md:p-6">
