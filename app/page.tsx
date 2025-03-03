@@ -1,6 +1,9 @@
+"use client";
 import Link from "next/link";
 import { ArrowRight, Citrus, CupSoda } from "lucide-react";
-import { cn } from "@/lib/utils";
+
+import Lottie from "lottie-react";
+import signupAnimation from "@/animations/login.json"; // You'll need to add this JSON file
 
 export default function HomePage() {
   return (
@@ -8,16 +11,18 @@ export default function HomePage() {
       <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12">
         <div className="w-full max-w-4xl mx-auto text-center">
           <div className="flex items-center gap-4 justify-center mb-6">
-            <Citrus className="h-16 w-16 text-primary rotate-45" strokeWidth={"2"} />
+            <Citrus
+              className="h-16 w-16 text-primary rotate-45"
+              strokeWidth={"2"}
+            />
             <h1 className="text-5xl md:text-7xl font-light tracking-tight text-primary">
               Lemonade
             </h1>
           </div>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12">
-            The comprehensive Ready to use nextjs theme for modern
+            The comprehensive ready to use nextjs theme for modern
             web-applications
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               href="/signin"

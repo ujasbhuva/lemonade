@@ -14,7 +14,7 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: "Lemonade - Ready to use nextjs theme",
-  description: "The comprehensive Ready to use nextjs theme",
+  description: "The comprehensive ready to use nextjs theme",
 };
 
 export default function MarketingLayout({
@@ -26,9 +26,9 @@ export default function MarketingLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={archivo.variable}>
         <Providers>
-          <div className="absolute top-0 left-0 right-0 z-10 w-full flex items-center justify-end p-4">
+          {/* <div className="absolute top-0 left-0 right-0 z-10 w-full flex items-center justify-end p-4">
             <ThemeToggle />
-          </div>
+          </div> */}
           {children}
         </Providers>
       </body>

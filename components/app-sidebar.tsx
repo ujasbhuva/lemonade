@@ -2,31 +2,51 @@
 
 import { SidebarContent } from "@/components/ui/sidebar";
 
+import {
+  BarChart3,
+  Bell,
+  Calendar,
+  Citrus,
+  FileCode2,
+  Home,
+  Info,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  MessageSquare,
+  Moon,
+  Settings,
+  Sun,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BarChart3,
-  Calendar,
-  Home,
-  LayoutDashboard,
-  Settings,
-  Users,
-  FileCode2,
-  Bell,
-  Info,
-  Moon,
-  Sun,
-  Menu,
-  MessageSquare,
-  CupSoda,
-  Citrus,
-} from "lucide-react";
 
-import { toggleTheme } from "@/lib/redux/themeSlice";
-import type { RootState } from "@/lib/redux/store";
+import { NotificationsList } from "@/components/notifications/notifications-list";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Sidebar,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -35,18 +55,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  SidebarFooter,
 } from "@/components/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { NotificationsList } from "@/components/notifications/notifications-list";
+import type { RootState } from "@/lib/redux/store";
+import { toggleTheme } from "@/lib/redux/themeSlice";
 
 export function AppSidebar() {
   const pathname = usePathname();
@@ -105,7 +116,10 @@ export function AppSidebar() {
       <SidebarHeader>
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
-            <Citrus className="h-8 w-8 text-primary rotate-45" strokeWidth={"1.5"}/>
+            <Citrus
+              className="h-8 w-8 text-primary rotate-45"
+              strokeWidth={"1.5"}
+            />
             <div className="flex flex-col">
               <span className="font-light text-3xl text-primary">Lemonade</span>
             </div>
@@ -215,6 +229,32 @@ export function AppSidebar() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-10 w-10 text-destructive"
+              >
+                <LogOut className="text-destructive w-5 h-5" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. Are you sure you want to log
+                  out?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>
+                  <Link href="/signin">Continue</Link>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         <div className="px-6 py-4 text-xs text-sidebar-foreground/70">
           <p>© 2024 Lemonade</p>

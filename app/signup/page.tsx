@@ -1,13 +1,5 @@
 "use client";
-
-import * as React from "react";
-import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { ArrowRight, Citrus, Mail } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -16,101 +8,90 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { OtpInput } from "@/components/ui/otp-input";
-
-// Email and password validation schema
-const signupSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/[A-Z]/, {
-      message: "Password must contain at least one uppercase letter",
-    })
-    .regex(/[a-z]/, {
-      message: "Password must contain at least one lowercase letter",
-    })
-    .regex(/[0-9]/, { message: "Password must contain at least one number" }),
-});
-
-// OTP validation schema
-const otpSchema = z.object({
-  otp: z.string().length(6, { message: "Please enter all 6 digits" }),
-});
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Check, Citrus } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import Link from "next/link";
+import Lottie from "lottie-react";
+import signupAnimation from "@/animations/login.json"; // You'll need to add this JSON file
 
 export default function SignupPage() {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [showOtpForm, setShowOtpForm] = React.useState(false);
-  const [email, setEmail] = React.useState("");
+  const [step, setStep] = useState(1);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [loading, setLoading] = useState(false);
 
-  // Form for signup
-  const signupForm = useForm<z.infer<typeof signupSchema>>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+  const handleOtpChange = (index: number, value: string) => {
+    if (value.length > 1) {
+      value = value.slice(0, 1);
+    }
 
-  // Form for OTP verification
-  const otpForm = useForm<z.infer<typeof otpSchema>>({
-    resolver: zodResolver(otpSchema),
-    defaultValues: {
-      otp: "",
-    },
-  });
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
 
-  // Handle signup form submission
-  function onSignupSubmit(values: z.infer<typeof signupSchema>) {
-    setIsLoading(true);
+    // Auto-focus next input
+    if (value && index < 5) {
+      const nextInput = document.getElementById(`otp-${index + 1}`);
+      if (nextInput) nextInput.focus();
+    }
+  };
 
-    // Simulate API call to send OTP
+  const handleKeyDown = (
+    index: number,
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    // Handle backspace
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      const prevInput = document.getElementById(`otp-${index - 1}`);
+      if (prevInput) prevInput.focus();
+    }
+  };
+
+  const handleSubmitEmail = () => {
+    if (!email) return;
+    setLoading(true);
     setTimeout(() => {
-      setEmail(values.email);
-      setShowOtpForm(true);
-      setIsLoading(false);
-    }, 1500);
-  }
+      setLoading(false);
+      setStep(2);
+    }, 1000);
+  };
 
-  // Handle OTP form submission
-  function onOtpSubmit(values: z.infer<typeof otpSchema>) {
-    setIsLoading(true);
-
-    // Simulate API call to verify OTP
+  const handleSubmitPassword = () => {
+    if (!password || password !== confirmPassword) return;
+    setLoading(true);
     setTimeout(() => {
-      console.log("OTP verified:", values.otp);
-      // Redirect to dashboard or home page after successful verification
-      window.location.href = "/webapp/dashboard";
-      setIsLoading(false);
-    }, 1500);
-  }
+      setLoading(false);
+      setStep(3);
+    }, 1000);
+  };
 
-  // Handle Google signup
-  function handleGoogleSignup() {
-    setIsLoading(true);
-
-    // Simulate API call for Google signup
+  const handleVerifyOtp = () => {
+    const otpValue = otp.join("");
+    if (otpValue.length !== 6) return;
+    setLoading(true);
     setTimeout(() => {
-      console.log("Google signup");
-      // Redirect to dashboard or home page after successful signup
-      window.location.href = "/webapp/dashboard";
-      setIsLoading(false);
+      setLoading(false);
+      setStep(4);
     }, 1500);
-  }
+  };
+
+  const handleGoogleSignup = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setStep(4);
+    }, 2000);
+  };
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-full md:w-4/5 lg:w-3/4 xl:w-2/3 max-w-5xl">
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
             <Citrus
@@ -122,153 +103,285 @@ export default function SignupPage() {
             </div>
           </div>
         </Link>
+        <Card className="w-full rounded-3xl flex flex-col md:flex-row overflow-hidden">
+          {/* Left side - Signup Form */}
+          <div className="w-full md:w-1/2 p-2">
+            <CardHeader className="pb-4">
+              <div className="w-full mb-4">
+                <Progress value={(step / 4) * 100} className="h-1" />
+              </div>
+              <CardTitle className="text-2xl font-light text-center">
+                {step === 1 && "Create your account"}
+                {step === 2 && "Set your password"}
+                {step === 3 && "Verify your email"}
+                {step === 4 && "Success!"}
+              </CardTitle>
+              <CardDescription className="text-center">
+                {step === 1 && "Sign up to get started with our platform"}
+                {step === 2 && "Choose a secure password for your account"}
+                {step === 3 && "Enter the 6-digit code sent to your email"}
+                {step === 4 && "Your account has been created successfully"}
+              </CardDescription>
+            </CardHeader>
 
-        <Card className="shadow-lg border">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-xl font-thin text-center">
-              {showOtpForm ? "Verify your email" : "Sign up"}
-            </CardTitle>
-            <CardDescription className="text-center">
-              {showOtpForm
-                ? "We've sent a verification code to your email"
-                : "Enter your information to create an account"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            {showOtpForm ? (
-              <Form {...otpForm}>
-                <form
-                  onSubmit={otpForm.handleSubmit(onOtpSubmit)}
-                  className="space-y-4"
-                >
-                  <FormField
-                    control={otpForm.control}
-                    name="otp"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Verification Code</FormLabel>
-                        <FormControl>
-                          <OtpInput
-                            value={field.value}
-                            onChange={field.onChange}
-                            disabled={isLoading}
-                          />
-                        </FormControl>
-                        <FormDescription>
-                          Enter the 6-digit code sent to your email
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Verifying..." : "Verify Email"}
-                    {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
-                  </Button>
-                </form>
-              </Form>
-            ) : (
-              <>
-                <Form {...signupForm}>
-                  <form
-                    onSubmit={signupForm.handleSubmit(onSignupSubmit)}
-                    className="space-y-4"
-                  >
-                    <FormField
-                      control={signupForm.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder="name@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+            <CardContent>
+              {step === 1 && (
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="font-light px-1">
+                      Email address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      className="rounded-xl px-5"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
-                    <FormField
-                      control={signupForm.control}
-                      name="password"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Password</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="password"
-                              placeholder="••••••••"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button
-                      type="submit"
-                      className="w-full"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Creating account..." : "Create Account"}
-                      {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
-                    </Button>
-                  </form>
-                </Form>
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
                   </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                      Or continue with
-                    </span>
+
+                  <Button
+                    onClick={handleSubmitEmail}
+                    disabled={loading}
+                    className="w-full rounded-xl"
+                  >
+                    {loading ? "Please wait..." : "Continue with Email"}
+                  </Button>
+
+                  <div className="relative flex items-center py-2">
+                    <Separator className="flex-1" />
+                    <span className="mx-4 text-sm text-gray-500">or</span>
+                    <Separator className="flex-1" />
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={handleGoogleSignup}
+                    disabled={loading}
+                    className="w-full font-light rounded-xl"
+                  >
+                    <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                    Continue with Google
+                  </Button>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="password" className="font-light px-1">
+                      Password
+                    </Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      className="rounded-xl px-5"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword" className="font-light px-1">
+                      Confirm password
+                    </Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      className="rounded-xl px-5"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    {password &&
+                      confirmPassword &&
+                      password !== confirmPassword && (
+                        <p className="text-sm text-red-500 px-1 mt-1">
+                          Passwords do not match
+                        </p>
+                      )}
+                  </div>
+
+                  <div className="flex flex-col gap-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                          password.length >= 8 ? "bg-green-500" : "bg-gray-200"
+                        }`}
+                      >
+                        {password.length >= 8 && (
+                          <Check className="h-3 w-3 text-white" />
+                        )}
+                      </div>
+                      <p>At least 8 characters</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                          /[A-Z]/.test(password) ? "bg-green-500" : "bg-gray-200"
+                        }`}
+                      >
+                        {/[A-Z]/.test(password) && (
+                          <Check className="h-3 w-3 text-white" />
+                        )}
+                      </div>
+                      <p>At least 1 uppercase letter</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                          /[0-9]/.test(password) ? "bg-green-500" : "bg-gray-200"
+                        }`}
+                      >
+                        {/[0-9]/.test(password) && (
+                          <Check className="h-3 w-3 text-white" />
+                        )}
+                      </div>
+                      <p>At least 1 number</p>
+                    </div>
                   </div>
                 </div>
-
-                <Button
-                  variant="outline"
-                  type="button"
-                  disabled={isLoading}
-                  onClick={handleGoogleSignup}
-                  className="w-full"
-                >
-                  <Mail className="mr-2 h-4 w-4" />
-                  Google
-                </Button>
-              </>
-            )}
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-2">
-            <div className="text-center text-sm text-muted-foreground">
-              {showOtpForm ? (
-                <>
-                  Didn't receive the code?{" "}
-                  <Button
-                    variant="link"
-                    className="px-0 font-normal"
-                    disabled={isLoading}
-                    onClick={() => {
-                      setIsLoading(true);
-                      setTimeout(() => {
-                        setIsLoading(false);
-                      }, 1500);
-                    }}
-                  >
-                    Resend
-                  </Button>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <Button variant="link" className="px-0 font-normal" asChild>
-                    <Link href="/signin">Sign in</Link>
-                  </Button>
-                </>
               )}
+
+              {step === 3 && (
+                <div className="space-y-6">
+                  <p className="text-sm text-center mb-6">
+                    We've sent a 6-digit verification code to{" "}
+                    <span className="font-medium">{email}</span>
+                  </p>
+
+                  <div className="flex justify-center gap-2">
+                    {otp.map((digit, index) => (
+                      <Input
+                        key={index}
+                        id={`otp-${index}`}
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={1}
+                        pattern="[0-9]"
+                        className="h-12 w-12 text-center text-lg"
+                        value={digit}
+                        onChange={(e) => handleOtpChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        autoFocus={index === 0}
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-sm text-center">
+                    Didn't receive the code?{" "}
+                    <Button variant="link" className="p-0 h-auto">
+                      Resend
+                    </Button>
+                  </p>
+                </div>
+              )}
+
+              {step === 4 && (
+                <div className="flex flex-col items-center justify-center py-6">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <Check className="h-8 w-8 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-medium">Welcome aboard!</h3>
+                  <p className="text-center text-gray-500 mt-2">
+                    Your account has been successfully created.
+                  </p>
+                </div>
+              )}
+            </CardContent>
+
+            <CardFooter className="flex justify-between">
+              {step > 1 && step < 4 && (
+                <Button
+                  variant="ghost"
+                  onClick={() => setStep(step - 1)}
+                  disabled={loading}
+                  className="rounded-full"
+                >
+                  Back
+                </Button>
+              )}
+
+              {step === 1 && <div></div>}
+
+              {step === 2 && (
+                <Button
+                  onClick={handleSubmitPassword}
+                  disabled={!password || password !== confirmPassword || loading}
+                  className="rounded-full"
+                >
+                  {loading ? "Processing..." : "Continue"}
+                </Button>
+              )}
+
+              {step === 3 && (
+                <Button
+                  onClick={handleVerifyOtp}
+                  disabled={otp.join("").length !== 6 || loading}
+                  className="rounded-full"
+                >
+                  {loading ? "Verifying..." : "Verify"}
+                </Button>
+              )}
+
+              {step === 4 && (
+                <Button
+                  className="w-full rounded-full"
+                  onClick={() => (window.location.href = "/webapp/dashboard")}
+                >
+                  Go to Dashboard
+                </Button>
+              )}
+            </CardFooter>
+          </div>
+          
+          {/* Right side - Lottie Animation */}
+          <div className="hidden md:flex md:w-1/2 bg-primary/5 items-center justify-center p-6">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Lottie 
+                animationData={signupAnimation} 
+                loop={true}
+                className="w-full max-w-md"
+              />
+              {/* Animation steps based on current step */}
+              <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4].map((stepNumber) => (
+                    <div 
+                      key={stepNumber}
+                      className={`w-2 h-2 rounded-full ${
+                        stepNumber === step ? "bg-primary" : "bg-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-          </CardFooter>
+          </div>
         </Card>
+        <div className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          Already have an account?{" "}
+          <Button variant="link" className="px-0 font-normal" asChild>
+            <Link href="/signin">Sign in</Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

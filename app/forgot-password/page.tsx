@@ -1,102 +1,160 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { Citrus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function ForgotPasswordPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [stage, setStage] = useState("email"); // 'email' or 'reset'
+  const [email, setEmail] = useState("");
+
+  const handleSendResetLink = () => {
+    if (!email) return;
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      setStage("reset");
+    }, 1500);
+  };
+  
+  const handleResetPassword = () => {
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      window.location.href = "/signin";
+    }, 1500);
+  };
+
   return (
-    <div className="flex min-h-screen">
-      {/* Left side - Illustration with gradient */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-primary/20 via-primary/5 to-background">
-        <div className="absolute inset-0 flex items-center justify-center p-12">
-          <Image
-            src="/images/forgot-password-illustration.svg"
-            alt="Forgot password illustration"
-            width={500}
-            height={500}
-            className="max-w-full h-auto"
-            priority
-          />
-        </div>
-        <div className="absolute bottom-12 left-12 max-w-md">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
-            Password Recovery
-          </h2>
-          <p className="text-muted-foreground">
-            We'll help you reset your password and get back to your account
-          </p>
-        </div>
-      </div>
-
-      {/* Right side - Forgot password form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md space-y-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Forgot password?
-            </h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              No worries, we'll send you reset instructions
-            </p>
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-[350px]">
+        <Link href="/">
+          <div className="flex items-center px-6 py-4 w-full justify-center">
+            <Citrus
+              className="h-8 w-8 text-primary rotate-45"
+              strokeWidth={"1.5"}
+            />
+            <div className="flex flex-col">
+              <span className="font-light text-3xl text-primary">Lemonade</span>
+            </div>
           </div>
+        </Link>
 
-          <Tabs defaultValue="email" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="email">Email</TabsTrigger>
-              <TabsTrigger value="reset">Reset</TabsTrigger>
-            </TabsList>
+        <Card className="border shadow-lg rounded-3xl">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl font-light text-center">
+              {stage === "email" ? "Forgot password?" : "Reset password"}
+            </CardTitle>
+            <CardDescription className="text-center">
+              {stage === "email" 
+                ? "No worries, we'll send you reset instructions" 
+                : "Enter your new password below"}
+            </CardDescription>
+          </CardHeader>
 
-            <TabsContent value="email" className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  required
-                />
+          <CardContent className="grid gap-4">
+            {stage === "email" ? (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="font-light px-1">Email</Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="name@example.com" 
+                    className="rounded-xl px-5"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required 
+                  />
+                </div>
+
+                <Button 
+                  type="button" 
+                  className="w-full rounded-xl"
+                  onClick={handleSendResetLink}
+                  disabled={isLoading || !email}
+                >
+                  {isLoading ? "Sending..." : "Send Reset Link"}
+                </Button>
               </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="new-password" className="font-light px-1">New Password</Label>
+                  <Input 
+                    id="new-password" 
+                    type="password" 
+                    className="rounded-xl px-5"
+                    required 
+                  />
+                </div>
 
-              <Button type="button" className="w-full">
-                Send Reset Link
-              </Button>
-            </TabsContent>
+                <div className="space-y-2">
+                  <Label htmlFor="confirm-password" className="font-light px-1">Confirm Password</Label>
+                  <Input 
+                    id="confirm-password" 
+                    type="password" 
+                    className="rounded-xl px-5"
+                    required 
+                  />
+                </div>
 
-            <TabsContent value="reset" className="space-y-6">
-              <div className="text-center mb-6">
-                <h3 className="text-lg font-medium">Create new password</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Your new password must be different from previous passwords
-                </p>
+                <div className="flex flex-col gap-2 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
+                    </div>
+                    <p>At least 8 characters</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
+                    </div>
+                    <p>At least 1 uppercase letter</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-gray-200">
+                    </div>
+                    <p>At least 1 number</p>
+                  </div>
+                </div>
+
+                <Button 
+                  type="button" 
+                  className="w-full rounded-xl"
+                  onClick={handleResetPassword}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Resetting..." : "Reset Password"}
+                </Button>
               </div>
+            )}
+          </CardContent>
 
-              <div className="space-y-2">
-                <Label htmlFor="new-password">New Password</Label>
-                <Input id="new-password" type="password" required />
-              </div>
+          <CardFooter className="flex flex-col space-y-2">
+          </CardFooter>
+        </Card>
 
-              <div className="space-y-2">
-                <Label htmlFor="confirm-password">Confirm Password</Label>
-                <Input id="confirm-password" type="password" required />
-              </div>
-
-              <Button type="submit" className="w-full">
-                Reset Password
-              </Button>
-            </TabsContent>
-          </Tabs>
-
-          <div className="text-center text-sm">
-            Remember your password?{" "}
-            <Link
-              href="/signin"
-              className="font-medium text-primary hover:underline"
-            >
-              Back to sign in
-            </Link>
-          </div>
+        <div className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          Remember your password?{" "}
+          <Button variant="link" className="px-0 font-normal" asChild>
+            <Link href="/signin">Back to sign in</Link>
+          </Button>
         </div>
       </div>
     </div>
