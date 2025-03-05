@@ -7,6 +7,7 @@ import {
   Bell,
   Calendar,
   Citrus,
+  Code,
   FileCode2,
   Home,
   Info,
@@ -98,6 +99,11 @@ export function AppSidebar() {
       title: "Team",
       href: "/webapp/team",
       icon: Users,
+    },
+    {
+      title: "Email templates",
+      href: "/webapp/email-templates",
+      icon: Code,
     },
     {
       title: "Components",
