@@ -357,7 +357,7 @@ export default function SignupPage() {
               {step === 4 && (
                 <Button
                   className="w-full rounded-full"
-                  onClick={() => (window.location.href = "/webapp/dashboard")}
+                  onClick={() => (window.location.href = "/app/dashboard")}
                 >
                   Go to Dashboard
                 </Button>

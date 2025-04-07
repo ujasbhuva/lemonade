@@ -72,47 +72,47 @@ export function AppSidebar() {
   const mainNavItems = [
     {
       title: "Dashboard",
-      href: "/webapp/dashboard",
+      href: "/app/dashboard",
       icon: Home,
     },
     {
       title: "Projects",
-      href: "/webapp/projects",
+      href: "/app/projects",
       icon: LayoutDashboard,
     },
     {
       title: "Calendar",
-      href: "/webapp/calendar",
+      href: "/app/calendar",
       icon: Calendar,
     },
     {
       title: "Chat",
-      href: "/webapp/chat",
+      href: "/app/chat",
       icon: MessageSquare,
     },
     {
       title: "Analytics",
-      href: "/webapp/analytics",
+      href: "/app/analytics",
       icon: BarChart3,
     },
     {
       title: "Team",
-      href: "/webapp/team",
+      href: "/app/team",
       icon: Users,
     },
     {
       title: "Email templates",
-      href: "/webapp/email-templates",
+      href: "/app/email-templates",
       icon: Code,
     },
     {
       title: "Components",
-      href: "/webapp/components",
+      href: "/app/components",
       icon: FileCode2,
     },
     {
       title: "Settings",
-      href: "/webapp/settings",
+      href: "/app/settings",
       icon: Settings,
     },
   ];
@@ -219,17 +219,17 @@ export function AppSidebar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="rounded-xl">
               <DropdownMenuItem asChild>
-                <Link href="/webapp/help" className="rounded-lg px-4 py-2">
+                <Link href="/app/help" className="rounded-lg px-4 py-2">
                   Help
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/webapp/documentation" className="rounded-lg px-4 py-2">
+                <Link href="/app/documentation" className="rounded-lg px-4 py-2">
                   Documentation
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/webapp/about" className="rounded-lg px-4 py-2">
+                <Link href="/app/about" className="rounded-lg px-4 py-2">
                   About
                 </Link>
               </DropdownMenuItem>

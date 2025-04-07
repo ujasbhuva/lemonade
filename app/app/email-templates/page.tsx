@@ -73,7 +73,7 @@ export default function EmailTemplatesPage() {
                 </TabsTrigger>
               </TabsList>
               <Button asChild className="rounded-full">
-                <Link href="/webapp/email-templates/create">
+                <Link href="/app/email-templates/create">
                   Create Custom Template <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -82,7 +82,7 @@ export default function EmailTemplatesPage() {
             <TabsContent value="all" className="mt-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {templates.map((template) => (
-                  <Link key={template.id} href={`/webapp/email-templates/${template.id}`}>
+                  <Link key={template.id} href={`/app/email-templates/${template.id}`}>
                     <Card className="overflow-hidden h-full hover:border-primary transition-colors">
                       <div className="aspect-[4/3] relative bg-muted/30">
                         <img
@@ -107,7 +107,7 @@ export default function EmailTemplatesPage() {
                   {templates
                     .filter((template) => template.category === category)
                     .map((template) => (
-                      <Link key={template.id} href={`/webapp/email-templates/${template.id}`}>
+                      <Link key={template.id} href={`/app/email-templates/${template.id}`}>
                         <Card className="overflow-hidden h-full hover:border-primary transition-colors">
                           <div className="aspect-[4/3] relative bg-muted/30">
                             <img

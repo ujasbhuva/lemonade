@@ -56,7 +56,7 @@ export default function LoginPage() {
     setTimeout(() => {
       console.log("Login:", values);
       // Redirect to dashboard after successful login
-      window.location.href = "/webapp/dashboard";
+      window.location.href = "/app/dashboard";
       setIsLoading(false);
     }, 1500);
   }
@@ -69,7 +69,7 @@ export default function LoginPage() {
     setTimeout(() => {
       console.log("Google login");
       // Redirect to dashboard after successful login
-      window.location.href = "/webapp/dashboard";
+      window.location.href = "/app/dashboard";
       setIsLoading(false);
     }, 1500);
   }

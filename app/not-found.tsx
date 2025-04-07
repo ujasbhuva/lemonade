@@ -35,7 +35,7 @@ export default function NotFound() {
             The page you are looking for doesn't exist or has been moved.
           </p>
           <Button asChild>
-            <Link href="/webapp/dashboard" className="w-full">
+            <Link href="/app/dashboard" className="w-full">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>

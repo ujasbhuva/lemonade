@@ -64,13 +64,13 @@
     --ring: 84 81% 34%;
 
     /* Dark mode sidebar */
-    --sidebar-background: 84 81% 5%;
+    --sidebar-background: 84 81% 4%;
     --sidebar-foreground: 355.7 100% 97.3%;
     --sidebar-primary: 355.7 100% 97.3%;
     --sidebar-primary-foreground: 84 81% 14%;
     --sidebar-accent: 84 81% 24%;
     --sidebar-accent-foreground: 355.7 100% 97.3%;
-    --sidebar-border: 84 81% 20%;
+    --sidebar-border: 84 81% 10%;
     --sidebar-ring: 84 81% 34%;
   }
 }

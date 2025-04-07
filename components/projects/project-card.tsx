@@ -28,7 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   }
 
   return (
-    <Link href={`/webapp/projects/${project.id}`}>
+    <Link href={`/app/projects/${project.id}`}>
       <Card className="hover:border-primary transition-colors">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
