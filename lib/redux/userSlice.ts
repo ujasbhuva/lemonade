@@ -44,4 +44,3 @@ export const userSlice = createSlice({
 
 export const { userLoginStart, userLoginSuccess, userLoginFailure, userLogout } = userSlice.actions
 export default userSlice.reducer
-

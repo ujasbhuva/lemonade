@@ -1,11 +1,5 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function AboutPage() {
   return (
@@ -23,11 +17,9 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Lemonade is dedicated to revolutionizing project management
-              through innovative solutions that enhance team collaboration,
-              streamline workflows, and drive successful outcomes. Our platform
-              combines powerful features with intuitive design to help teams of
-              all sizes work more efficiently.
+              Lemonade is dedicated to revolutionizing project management through innovative solutions that enhance team
+              collaboration, streamline workflows, and drive successful outcomes. Our platform combines powerful
+              features with intuitive design to help teams of all sizes work more efficiently.
             </p>
           </CardContent>
         </Card>
@@ -42,25 +34,17 @@ export default function AboutPage() {
               <div className="grid gap-6">
                 <div className="flex items-center gap-4">
                   <Avatar className="h-12 w-12">
-                    <AvatarImage
-                      src="/placeholder.svg?height=48&width=48"
-                      alt="Alesha Hyocinth"
-                    />
+                    <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Alesha Hyocinth" />
                     <AvatarFallback>AH</AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="font-semibold">Alesha Hyocinth</h3>
-                    <p className="text-sm text-muted-foreground">
-                      CEO & Founder
-                    </p>
+                    <p className="text-sm text-muted-foreground">CEO & Founder</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Avatar className="h-12 w-12">
-                    <AvatarImage
-                      src="/placeholder.svg?height=48&width=48"
-                      alt="John Davidson"
-                    />
+                    <AvatarImage src="/placeholder.svg?height=48&width=48" alt="John Davidson" />
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <div>
@@ -70,17 +54,12 @@ export default function AboutPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Avatar className="h-12 w-12">
-                    <AvatarImage
-                      src="/placeholder.svg?height=48&width=48"
-                      alt="Sarah Mitchell"
-                    />
+                    <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Sarah Mitchell" />
                     <AvatarFallback>SM</AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="font-semibold">Sarah Mitchell</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Head of Design
-                    </p>
+                    <p className="text-sm text-muted-foreground">Head of Design</p>
                   </div>
                 </div>
               </div>
@@ -97,29 +76,25 @@ export default function AboutPage() {
                 <div className="space-y-2">
                   <h3 className="font-semibold">Innovation</h3>
                   <p className="text-sm text-muted-foreground">
-                    We constantly push boundaries to create cutting-edge
-                    solutions that solve real problems.
+                    We constantly push boundaries to create cutting-edge solutions that solve real problems.
                   </p>
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-semibold">Collaboration</h3>
                   <p className="text-sm text-muted-foreground">
-                    We believe in the power of teamwork and foster an
-                    environment of open communication.
+                    We believe in the power of teamwork and foster an environment of open communication.
                   </p>
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-semibold">Excellence</h3>
                   <p className="text-sm text-muted-foreground">
-                    We strive for excellence in everything we do, from product
-                    development to customer support.
+                    We strive for excellence in everything we do, from product development to customer support.
                   </p>
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-semibold">User-Centric</h3>
                   <p className="text-sm text-muted-foreground">
-                    Our users are at the heart of every decision we make and
-                    feature we build.
+                    Our users are at the heart of every decision we make and feature we build.
                   </p>
                 </div>
               </div>
@@ -128,5 +103,5 @@ export default function AboutPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }

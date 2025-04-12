@@ -178,4 +178,3 @@ export const invoiceEmailCode = `<!DOCTYPE html>
   </table>
 </body>
 </html>`
-

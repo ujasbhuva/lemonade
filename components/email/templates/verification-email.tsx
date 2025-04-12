@@ -56,8 +56,8 @@ export function VerificationTemplate() {
                     Hi [Customer Name],
                   </p>
                   <p style={{ fontSize: "16px", lineHeight: "1.5", color: "#4A5568", margin: "0 0 20px 0" }}>
-                    Please verify your email address to complete your Lemonade account setup. This ensures we have
-                    the right email in case we need to contact you.
+                    Please verify your email address to complete your Lemonade account setup. This ensures we have the
+                    right email in case we need to contact you.
                   </p>
                   <p style={{ fontSize: "16px", lineHeight: "1.5", color: "#4A5568", margin: "0 0 20px 0" }}>
                     Simply click the button below to verify your email address:
@@ -169,4 +169,3 @@ export function VerificationTemplate() {
     </div>
   )
 }
-

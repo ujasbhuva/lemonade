@@ -1,16 +1,5 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export default function HelpPage() {
   return (
@@ -29,46 +18,32 @@ export default function HelpPage() {
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  How do I create a new project?
-                </AccordionTrigger>
+                <AccordionTrigger>How do I create a new project?</AccordionTrigger>
                 <AccordionContent>
-                  To create a new project, navigate to the Projects page and
-                  click the "New Project" button. Fill in the required
-                  information such as project name, description, and team
-                  members, then click "Create Project".
+                  To create a new project, navigate to the Projects page and click the "New Project" button. Fill in the
+                  required information such as project name, description, and team members, then click "Create Project".
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  How can I invite team members?
-                </AccordionTrigger>
+                <AccordionTrigger>How can I invite team members?</AccordionTrigger>
                 <AccordionContent>
-                  You can invite team members by going to the Team page and
-                  clicking "Invite Member". Enter their email address and select
-                  their role. They will receive an invitation email with
-                  instructions to join.
+                  You can invite team members by going to the Team page and clicking "Invite Member". Enter their email
+                  address and select their role. They will receive an invitation email with instructions to join.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  How do I track project progress?
-                </AccordionTrigger>
+                <AccordionTrigger>How do I track project progress?</AccordionTrigger>
                 <AccordionContent>
-                  Project progress can be tracked through the Dashboard and
-                  Analytics pages. You can view various metrics, charts, and
-                  reports showing task completion rates, team performance, and
-                  overall project status.
+                  Project progress can be tracked through the Dashboard and Analytics pages. You can view various
+                  metrics, charts, and reports showing task completion rates, team performance, and overall project
+                  status.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
-                <AccordionTrigger>
-                  What are the available task priorities?
-                </AccordionTrigger>
+                <AccordionTrigger>What are the available task priorities?</AccordionTrigger>
                 <AccordionContent>
-                  Tasks can be assigned three priority levels: Low, Medium, and
-                  High. These help team members understand task urgency and
-                  manage their workload effectively.
+                  Tasks can be assigned three priority levels: Low, Medium, and High. These help team members understand
+                  task urgency and manage their workload effectively.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -84,8 +59,7 @@ export default function HelpPage() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Our support team is available 24/7 to help you with any
-                  questions or issues you may have.
+                  Our support team is available 24/7 to help you with any questions or issues you may have.
                 </p>
                 <div className="space-y-2">
                   <h3 className="font-semibold">Contact Methods</h3>
@@ -95,9 +69,7 @@ export default function HelpPage() {
                     <li>Live Chat: Available on dashboard</li>
                   </ul>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Average response time: &lt; 2 hours
-                </p>
+                <p className="text-sm text-muted-foreground">Average response time: &lt; 2 hours</p>
               </div>
             </CardContent>
           </Card>
@@ -133,5 +105,5 @@ export default function HelpPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }

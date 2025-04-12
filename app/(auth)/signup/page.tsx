@@ -1,106 +1,94 @@
-"use client";
-import signupAnimation from "@/animations/login.json"; // You'll need to add this JSON file
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
-import { Check, Citrus } from "lucide-react";
-import Link from "next/link";
-import React, { useState } from "react";
+"use client"
+import signupAnimation from "@/animations/login.json" // You'll need to add this JSON file
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Progress } from "@/components/ui/progress"
+import { Separator } from "@/components/ui/separator"
+import { Check, Citrus } from "lucide-react"
+import Link from "next/link"
+import type React from "react"
+import { useState } from "react"
 
-import dynamic from "next/dynamic";
-import ThemeToggle from "@/components/ui/theme-toggle";
+import dynamic from "next/dynamic"
+import ThemeToggle from "@/components/ui/theme-toggle"
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 export default function SignupPage() {
-  const [step, setStep] = useState(1);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [otp, setOtp] = useState(["", "", "", "", "", ""])
+  const [loading, setLoading] = useState(false)
 
   const handleOtpChange = (index: number, value: string) => {
     if (value.length > 1) {
-      value = value.slice(0, 1);
+      value = value.slice(0, 1)
     }
 
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
+    const newOtp = [...otp]
+    newOtp[index] = value
+    setOtp(newOtp)
 
     // Auto-focus next input
     if (value && index < 5) {
-      const nextInput = document.getElementById(`otp-${index + 1}`);
-      if (nextInput) nextInput.focus();
+      const nextInput = document.getElementById(`otp-${index + 1}`)
+      if (nextInput) nextInput.focus()
     }
-  };
+  }
 
-  const handleKeyDown = (
-    index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     // Handle backspace
     if (e.key === "Backspace" && !otp[index] && index > 0) {
-      const prevInput = document.getElementById(`otp-${index - 1}`);
-      if (prevInput) prevInput.focus();
+      const prevInput = document.getElementById(`otp-${index - 1}`)
+      if (prevInput) prevInput.focus()
     }
-  };
+  }
 
   const handleSubmitEmail = () => {
-    if (!email) return;
-    setLoading(true);
+    if (!email) return
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setStep(2);
-    }, 1000);
-  };
+      setLoading(false)
+      setStep(2)
+    }, 1000)
+  }
 
   const handleSubmitPassword = () => {
-    if (!password || password !== confirmPassword) return;
-    setLoading(true);
+    if (!password || password !== confirmPassword) return
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setStep(3);
-    }, 1000);
-  };
+      setLoading(false)
+      setStep(3)
+    }, 1000)
+  }
 
   const handleVerifyOtp = () => {
-    const otpValue = otp.join("");
-    if (otpValue.length !== 6) return;
-    setLoading(true);
+    const otpValue = otp.join("")
+    if (otpValue.length !== 6) return
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setStep(4);
-    }, 1500);
-  };
+      setLoading(false)
+      setStep(4)
+    }, 1500)
+  }
 
   const handleGoogleSignup = () => {
-    setLoading(true);
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setStep(4);
-    }, 2000);
-  };
+      setLoading(false)
+      setStep(4)
+    }, 2000)
+  }
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-full md:w-4/5 lg:w-3/4 xl:w-2/3 max-w-5xl">
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
-            <Citrus
-              className="h-8 w-8 text-primary rotate-45"
-              strokeWidth={"1.5"}
-            />
+            <Citrus className="h-8 w-8 text-primary rotate-45" strokeWidth={"1.5"} />
             <div className="flex flex-col">
               <span className="font-light text-3xl text-primary">Lemonade</span>
             </div>
@@ -145,11 +133,7 @@ export default function SignupPage() {
                     />
                   </div>
 
-                  <Button
-                    onClick={handleSubmitEmail}
-                    disabled={loading}
-                    className="w-full rounded-xl"
-                  >
+                  <Button onClick={handleSubmitEmail} disabled={loading} className="w-full rounded-xl">
                     {loading ? "Please wait..." : "Continue with Email"}
                   </Button>
 
@@ -204,10 +188,7 @@ export default function SignupPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="confirmPassword"
-                      className="font-light px-1"
-                    >
+                    <Label htmlFor="confirmPassword" className="font-light px-1">
                       Confirm password
                     </Label>
                     <Input
@@ -217,13 +198,9 @@ export default function SignupPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
-                    {password &&
-                      confirmPassword &&
-                      password !== confirmPassword && (
-                        <p className="text-sm text-red-500 px-1 mt-1">
-                          Passwords do not match
-                        </p>
-                      )}
+                    {password && confirmPassword && password !== confirmPassword && (
+                      <p className="text-sm text-red-500 px-1 mt-1">Passwords do not match</p>
+                    )}
                   </div>
 
                   <div className="flex flex-col gap-2 text-sm">
@@ -233,37 +210,27 @@ export default function SignupPage() {
                           password.length >= 8 ? "bg-green-500" : "bg-gray-200"
                         }`}
                       >
-                        {password.length >= 8 && (
-                          <Check className="h-3 w-3 text-white" />
-                        )}
+                        {password.length >= 8 && <Check className="h-3 w-3 text-white" />}
                       </div>
                       <p>At least 8 characters</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div
                         className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          /[A-Z]/.test(password)
-                            ? "bg-green-500"
-                            : "bg-gray-200"
+                          /[A-Z]/.test(password) ? "bg-green-500" : "bg-gray-200"
                         }`}
                       >
-                        {/[A-Z]/.test(password) && (
-                          <Check className="h-3 w-3 text-white" />
-                        )}
+                        {/[A-Z]/.test(password) && <Check className="h-3 w-3 text-white" />}
                       </div>
                       <p>At least 1 uppercase letter</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div
                         className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                          /[0-9]/.test(password)
-                            ? "bg-green-500"
-                            : "bg-gray-200"
+                          /[0-9]/.test(password) ? "bg-green-500" : "bg-gray-200"
                         }`}
                       >
-                        {/[0-9]/.test(password) && (
-                          <Check className="h-3 w-3 text-white" />
-                        )}
+                        {/[0-9]/.test(password) && <Check className="h-3 w-3 text-white" />}
                       </div>
                       <p>At least 1 number</p>
                     </div>
@@ -274,8 +241,7 @@ export default function SignupPage() {
               {step === 3 && (
                 <div className="space-y-6">
                   <p className="text-sm text-center mb-6">
-                    We've sent a 6-digit verification code to{" "}
-                    <span className="font-medium">{email}</span>
+                    We've sent a 6-digit verification code to <span className="font-medium">{email}</span>
                   </p>
 
                   <div className="flex justify-center gap-2">
@@ -311,21 +277,14 @@ export default function SignupPage() {
                     <Check className="h-8 w-8 text-green-600" />
                   </div>
                   <h3 className="text-xl font-medium">Welcome aboard!</h3>
-                  <p className="text-center text-gray-500 mt-2">
-                    Your account has been successfully created.
-                  </p>
+                  <p className="text-center text-gray-500 mt-2">Your account has been successfully created.</p>
                 </div>
               )}
             </CardContent>
 
             <CardFooter className="flex justify-between">
               {step > 1 && step < 4 && (
-                <Button
-                  variant="ghost"
-                  onClick={() => setStep(step - 1)}
-                  disabled={loading}
-                  className="rounded-full"
-                >
+                <Button variant="ghost" onClick={() => setStep(step - 1)} disabled={loading} className="rounded-full">
                   Back
                 </Button>
               )}
@@ -335,9 +294,7 @@ export default function SignupPage() {
               {step === 2 && (
                 <Button
                   onClick={handleSubmitPassword}
-                  disabled={
-                    !password || password !== confirmPassword || loading
-                  }
+                  disabled={!password || password !== confirmPassword || loading}
                   className="rounded-full"
                 >
                   {loading ? "Processing..." : "Continue"}
@@ -355,10 +312,7 @@ export default function SignupPage() {
               )}
 
               {step === 4 && (
-                <Button
-                  className="w-full rounded-full"
-                  onClick={() => (window.location.href = "/app/dashboard")}
-                >
+                <Button className="w-full rounded-full" onClick={() => (window.location.href = "/app/dashboard")}>
                   Go to Dashboard
                 </Button>
               )}
@@ -368,20 +322,14 @@ export default function SignupPage() {
           {/* Right side - Lottie Animation */}
           <div className="hidden md:flex md:w-1/2 bg-primary/5 items-center justify-center p-6">
             <div className="relative w-full h-full flex items-center justify-center">
-              <Lottie
-                animationData={signupAnimation}
-                loop={true}
-                className="w-full max-w-md"
-              />
+              <Lottie animationData={signupAnimation} loop={true} className="w-full max-w-md" />
               {/* Animation steps based on current step */}
               <div className="absolute bottom-8 left-0 right-0 flex justify-center">
                 <div className="flex gap-2">
                   {[1, 2, 3, 4].map((stepNumber) => (
                     <div
                       key={stepNumber}
-                      className={`w-2 h-2 rounded-full ${
-                        stepNumber === step ? "bg-primary" : "bg-gray-300"
-                      }`}
+                      className={`w-2 h-2 rounded-full ${stepNumber === step ? "bg-primary" : "bg-gray-300"}`}
                     />
                   ))}
                 </div>
@@ -397,5 +345,5 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

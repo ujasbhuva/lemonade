@@ -61,4 +61,3 @@ export function EventList({ events }: EventListProps) {
     </div>
   )
 }
-

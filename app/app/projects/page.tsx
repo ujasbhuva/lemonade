@@ -1,18 +1,12 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Plus, Search } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ProjectCard } from "@/components/projects/project-card";
-import { NewProjectDialog } from "@/components/projects/new-project-dialog";
+import { useState } from "react"
+import { Plus, Search } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ProjectCard } from "@/components/projects/project-card"
+import { NewProjectDialog } from "@/components/projects/new-project-dialog"
 
 const projects = [
   {
@@ -53,27 +47,24 @@ const projects = [
       { name: "Tom W", avatar: "/placeholder.svg?height=32&width=32" },
     ],
   },
-];
+]
 
 export default function ProjectsPage() {
-  const [isNewProjectOpen, setIsNewProjectOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isNewProjectOpen, setIsNewProjectOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const filteredProjects = projects.filter(
     (project) =>
       project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
 
   return (
     <div className="flex flex-col">
       <header className="border-b">
         <div className="container flex h-16 items-center justify-between px-4">
           <h1 className="text-lg font-light">Projects</h1>
-          <Button
-            onClick={() => setIsNewProjectOpen(true)}
-            className="rounded-full"
-          >
+          <Button onClick={() => setIsNewProjectOpen(true)} className="rounded-full">
             <Plus className="mr-2 h-4 w-4" />
             New Project
           </Button>
@@ -83,9 +74,7 @@ export default function ProjectsPage() {
         <Card>
           <CardHeader>
             <CardTitle>All Projects</CardTitle>
-            <CardDescription>
-              View and manage all your projects in one place.
-            </CardDescription>
+            <CardDescription>View and manage all your projects in one place.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -107,10 +96,7 @@ export default function ProjectsPage() {
           </CardContent>
         </Card>
       </main>
-      <NewProjectDialog
-        open={isNewProjectOpen}
-        onOpenChange={setIsNewProjectOpen}
-      />
+      <NewProjectDialog open={isNewProjectOpen} onOpenChange={setIsNewProjectOpen} />
     </div>
-  );
+  )
 }

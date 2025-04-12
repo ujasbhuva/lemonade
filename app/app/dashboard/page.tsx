@@ -1,30 +1,13 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Clock, Phone, Send } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+"use client"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Clock, Phone, Send } from "lucide-react"
+import { Area, AreaChart } from "recharts"
 
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 const chartData = [
   { month: "January", activity: 186 },
   { month: "February", activity: 305 },
@@ -32,13 +15,13 @@ const chartData = [
   { month: "April", activity: 73 },
   { month: "May", activity: 209 },
   { month: "June", activity: 214 },
-];
+]
 const chartConfig = {
   activity: {
     label: "Activity",
     color: "hsl(var(--chart-1))",
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 export default function Dashboard() {
   return (
@@ -59,9 +42,7 @@ export default function Dashboard() {
                   <AvatarFallback>AH</AvatarFallback>
                 </Avatar>
                 <div>
-                  <CardTitle className="font-light text-sm">
-                    Alesha Hyocinth
-                  </CardTitle>
+                  <CardTitle className="font-light text-sm">Alesha Hyocinth</CardTitle>
                   <CardDescription>Project Manager</CardDescription>
                 </div>
               </div>
@@ -70,9 +51,7 @@ export default function Dashboard() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-2xl font-light">Lemonade</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Industry: SaaS
-                  </p>
+                  <p className="text-sm text-muted-foreground">Industry: SaaS</p>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
@@ -89,9 +68,7 @@ export default function Dashboard() {
                     <SelectContent className="rounded-xl">
                       <SelectItem value="report">Select a report</SelectItem>
                       <SelectItem value="progress">Progress Report</SelectItem>
-                      <SelectItem value="financial">
-                        Financial Report
-                      </SelectItem>
+                      <SelectItem value="financial">Financial Report</SelectItem>
                       <SelectItem value="team">Team Report</SelectItem>
                     </SelectContent>
                   </Select>
@@ -112,9 +89,7 @@ export default function Dashboard() {
             <CardHeader className="px-6 pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="font-light">
-                    Upcoming Meetings
-                  </CardTitle>
+                  <CardTitle className="font-light">Upcoming Meetings</CardTitle>
                 </div>
                 <Select defaultValue="september">
                   <SelectTrigger className="w-[160px] rounded-full">
@@ -179,19 +154,14 @@ export default function Dashboard() {
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <CardTitle className="text-base">
-                    Total project time
-                  </CardTitle>
+                  <CardTitle className="text-base">Total project time</CardTitle>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <span className="text-5xl font-bold">645</span>
-                <span className="text-5xl font-light text-muted-foreground">
-                  {" "}
-                  h
-                </span>
+                <span className="text-5xl font-light text-muted-foreground"> h</span>
               </div>
             </CardContent>
           </Card>
@@ -284,9 +254,7 @@ export default function Dashboard() {
                 </Select>
               </div>
               <div className="mt-2 flex items-center gap-2">
-                <div className="rounded-full bg-white/20 px-2 py-1 text-xs">
-                  +40%
-                </div>
+                <div className="rounded-full bg-white/20 px-2 py-1 text-xs">+40%</div>
               </div>
             </CardHeader>
             <CardContent className="p-0">
@@ -299,16 +267,8 @@ export default function Dashboard() {
                     right: 12,
                   }}
                 >
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent indicator="line" />}
-                  />
-                  <Area
-                    dataKey="activity"
-                    type="natural"
-                    fillOpacity={0}
-                    stroke="lime"
-                  />
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                  <Area dataKey="activity" type="natural" fillOpacity={0} stroke="lime" />
                 </AreaChart>
               </ChartContainer>
             </CardContent>
@@ -316,5 +276,5 @@ export default function Dashboard() {
         </div>
       </main>
     </div>
-  );
+  )
 }

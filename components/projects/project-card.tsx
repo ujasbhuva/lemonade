@@ -78,4 +78,3 @@ export function ProjectCard({ project }: ProjectCardProps) {
     </Link>
   )
 }
-

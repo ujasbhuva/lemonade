@@ -134,4 +134,3 @@ export function NewEventDialog({ open, onOpenChange }: NewEventDialogProps) {
     </Dialog>
   )
 }
-

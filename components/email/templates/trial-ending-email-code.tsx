@@ -179,4 +179,3 @@ export const trialEndingEmailCode = `<!DOCTYPE html>
   </table>
 </body>
 </html>`
-

@@ -1,22 +1,14 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import {
-  addDays,
-  format,
-  startOfToday,
-  startOfWeek,
-  addWeeks,
-  subWeeks,
-} from "date-fns";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { NewEventDialog } from "@/components/calendar/new-event-dialog";
-import { EventList } from "@/components/calendar/event-list";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
+import { useState } from "react"
+import { addDays, format, startOfToday, startOfWeek, addWeeks, subWeeks } from "date-fns"
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { NewEventDialog } from "@/components/calendar/new-event-dialog"
+import { EventList } from "@/components/calendar/event-list"
+import { cn } from "@/lib/utils"
 
 // Dummy events data with colors
 const events = [
@@ -50,28 +42,28 @@ const events = [
     type: "review",
     color: "bg-green-100 text-green-700 border-green-200",
   },
-];
+]
 
 const timeSlots = Array.from({ length: 24 }, (_, i) => {
-  const hour = i.toString().padStart(2, "0");
-  return `${hour}:00`;
-});
+  const hour = i.toString().padStart(2, "0")
+  return `${hour}:00`
+})
 
 export default function CalendarPage() {
-  const [date, setDate] = useState<Date>(new Date());
-  const [view, setView] = useState<"month" | "week" | "day">("week");
-  const [isNewEventOpen, setIsNewEventOpen] = useState(false);
-  const [currentWeek, setCurrentWeek] = useState(startOfWeek(new Date()));
+  const [date, setDate] = useState<Date>(new Date())
+  const [view, setView] = useState<"month" | "week" | "day">("week")
+  const [isNewEventOpen, setIsNewEventOpen] = useState(false)
+  const [currentWeek, setCurrentWeek] = useState(startOfWeek(new Date()))
 
   const handlePreviousWeek = () => {
-    setCurrentWeek(subWeeks(currentWeek, 1));
-  };
+    setCurrentWeek(subWeeks(currentWeek, 1))
+  }
 
   const handleNextWeek = () => {
-    setCurrentWeek(addWeeks(currentWeek, 1));
-  };
+    setCurrentWeek(addWeeks(currentWeek, 1))
+  }
 
-  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(currentWeek, i));
+  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(currentWeek, i))
 
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] ">
@@ -82,34 +74,17 @@ export default function CalendarPage() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={handlePreviousWeek}
-                className="rounded-full"
-              >
+              <Button variant="outline" size="icon" onClick={handlePreviousWeek} className="rounded-full">
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={handleNextWeek}
-                className="rounded-full"
-              >
+              <Button variant="outline" size="icon" onClick={handleNextWeek} className="rounded-full">
                 <ChevronRight className="h-4 w-4" />
               </Button>
-              <Button
-                variant="outline"
-                onClick={() => setDate(new Date())}
-                className="rounded-full"
-              >
+              <Button variant="outline" onClick={() => setDate(new Date())} className="rounded-full">
                 Today
               </Button>
             </div>
-            <Button
-              onClick={() => setIsNewEventOpen(true)}
-              className="rounded-full"
-            >
+            <Button onClick={() => setIsNewEventOpen(true)} className="rounded-full">
               <Plus className="mr-2 h-4 w-4" />
               Add Event
             </Button>
@@ -127,8 +102,7 @@ export default function CalendarPage() {
                 onSelect={setDate as any}
                 className="rounded-xl border"
                 classNames={{
-                  day_selected:
-                    "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
+                  day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
                 }}
               />
             </CardContent>
@@ -136,11 +110,7 @@ export default function CalendarPage() {
           <Card>
             <CardContent className="p-4">
               <EventList
-                events={events.filter(
-                  (event) =>
-                    format(event.date, "yyyy-MM-dd") ===
-                    format(date, "yyyy-MM-dd")
-                )}
+                events={events.filter((event) => format(event.date, "yyyy-MM-dd") === format(date, "yyyy-MM-dd"))}
               />
             </CardContent>
           </Card>
@@ -153,10 +123,7 @@ export default function CalendarPage() {
             <div className="w-16 flex-shrink-0">
               <div className="h-16" /> {/* Header spacer */}
               {timeSlots.map((time) => (
-                <div
-                  key={time}
-                  className="h-16 text-xs text-muted-foreground pr-2 text-right"
-                >
+                <div key={time} className="h-16 text-xs text-muted-foreground pr-2 text-right">
                   {time}
                 </div>
               ))}
@@ -169,19 +136,13 @@ export default function CalendarPage() {
                 <div
                   key={i}
                   className={cn("h-16 border-b border-r p-2 text-center", {
-                    "bg-accent":
-                      format(day, "yyyy-MM-dd") ===
-                      format(new Date(), "yyyy-MM-dd"),
+                    "bg-accent": format(day, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd"),
                   })}
                 >
-                  <div className="text-sm font-medium">
-                    {format(day, "EEE")}
-                  </div>
+                  <div className="text-sm font-medium">{format(day, "EEE")}</div>
                   <div
                     className={cn("text-2xl", {
-                      "text-primary":
-                        format(day, "yyyy-MM-dd") ===
-                        format(new Date(), "yyyy-MM-dd"),
+                      "text-primary": format(day, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd"),
                     })}
                   >
                     {format(day, "d")}
@@ -194,10 +155,9 @@ export default function CalendarPage() {
                 weekDays.map((day, dayIndex) => {
                   const currentEvents = events.filter(
                     (event) =>
-                      format(event.date, "yyyy-MM-dd") ===
-                        format(day, "yyyy-MM-dd") &&
-                      event.time.split(":")[0] === time.split(":")[0]
-                  );
+                      format(event.date, "yyyy-MM-dd") === format(day, "yyyy-MM-dd") &&
+                      event.time.split(":")[0] === time.split(":")[0],
+                  )
 
                   return (
                     <div
@@ -207,26 +167,21 @@ export default function CalendarPage() {
                       {currentEvents.map((event) => (
                         <div
                           key={event.id}
-                          className={cn(
-                            "absolute left-1 right-1 rounded-lg border p-2 cursor-pointer",
-                            event.color
-                          )}
+                          className={cn("absolute left-1 right-1 rounded-lg border p-2 cursor-pointer", event.color)}
                           style={{
                             top: "4px",
                             minHeight: "calc(100% - 8px)",
                           }}
                         >
-                          <div className="text-xs font-medium">
-                            {event.title}
-                          </div>
+                          <div className="text-xs font-medium">{event.title}</div>
                           <div className="text-xs">
                             {event.time} - {event.endTime}
                           </div>
                         </div>
                       ))}
                     </div>
-                  );
-                })
+                  )
+                }),
               )}
             </div>
           </div>
@@ -234,5 +189,5 @@ export default function CalendarPage() {
       </div>
       <NewEventDialog open={isNewEventOpen} onOpenChange={setIsNewEventOpen} />
     </div>
-  );
+  )
 }

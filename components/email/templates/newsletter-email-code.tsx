@@ -189,4 +189,3 @@ export const newsletterEmailCode = `<!DOCTYPE html>
   </table>
 </body>
 </html>`
-

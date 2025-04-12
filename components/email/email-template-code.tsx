@@ -16,8 +16,8 @@ export function EmailTemplateCode({ templateId }: EmailTemplateCodeProps) {
     case "welcome":
       code = welcomeEmailCode
       break
-    // case "password-reset":
-    //   code = passwordResetCode
+      // case "password-reset":
+      //   code = passwordResetCode
       break
     case "invoice":
       code = invoiceEmailCode
@@ -37,4 +37,3 @@ export function EmailTemplateCode({ templateId }: EmailTemplateCodeProps) {
 
   return <pre className="text-sm overflow-auto whitespace-pre-wrap">{code}</pre>
 }
-

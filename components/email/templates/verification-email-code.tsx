@@ -108,4 +108,3 @@ export const verificationEmailCode = `<!DOCTYPE html>
   </table>
 </body>
 </html>`
-

@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ProjectOverview } from "@/components/projects/project-overview";
-import { ProjectFiles } from "@/components/projects/project-files";
+import { useState } from "react"
+import { useParams } from "next/navigation"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ProjectOverview } from "@/components/projects/project-overview"
+import { ProjectFiles } from "@/components/projects/project-files"
 
 export default function ProjectDetailsPage() {
-  const params = useParams();
-  const [activeTab, setActiveTab] = useState("overview");
+  const params = useParams()
+  const [activeTab, setActiveTab] = useState("overview")
 
   // In a real app, fetch project data based on params.id
   const project = {
@@ -52,7 +52,7 @@ export default function ProjectDetailsPage() {
         status: "Pending",
       },
     ],
-  };
+  }
 
   return (
     <div className="flex flex-col">
@@ -62,11 +62,7 @@ export default function ProjectDetailsPage() {
         </div>
       </header>
       <main className="flex-1 space-y-4 p-4 md:p-6">
-        <Tabs
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="space-y-4"
-        >
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
           <TabsList className="grid w-full grid-cols-2 gap-4 rounded-full p-1 w-fit">
             <TabsTrigger value="overview" className="rounded-full w-32">
               Overview
@@ -84,5 +80,5 @@ export default function ProjectDetailsPage() {
         </Tabs>
       </main>
     </div>
-  );
+  )
 }

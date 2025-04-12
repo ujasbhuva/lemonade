@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { SidebarContent } from "@/components/ui/sidebar";
+import { SidebarContent } from "@/components/ui/sidebar"
 
 import {
   BarChart3,
@@ -19,12 +19,12 @@ import {
   Settings,
   Sun,
   Users,
-} from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+} from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useDispatch, useSelector } from "react-redux"
 
-import { NotificationsList } from "@/components/notifications/notifications-list";
+import { NotificationsList } from "@/components/notifications/notifications-list"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,16 +35,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+} from "@/components/ui/alert-dialog"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   Sidebar,
   SidebarFooter,
@@ -56,18 +51,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar";
-import type { RootState } from "@/lib/redux/store";
-import { toggleTheme } from "@/lib/redux/themeSlice";
+} from "@/components/ui/sidebar"
+import type { RootState } from "@/lib/redux/store"
+import { toggleTheme } from "@/lib/redux/themeSlice"
 
 export function AppSidebar() {
-  const pathname = usePathname();
-  const dispatch = useDispatch();
-  const theme = useSelector((state: RootState) => state.theme.mode);
-  const notifications = useSelector(
-    (state: RootState) => state.notifications.notifications
-  );
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const pathname = usePathname()
+  const dispatch = useDispatch()
+  const theme = useSelector((state: RootState) => state.theme.mode)
+  const notifications = useSelector((state: RootState) => state.notifications.notifications)
+  const unreadCount = notifications.filter((n) => !n.read).length
 
   const mainNavItems = [
     {
@@ -115,17 +108,14 @@ export function AppSidebar() {
       href: "/app/settings",
       icon: Settings,
     },
-  ];
+  ]
 
   const sidebarContentSection = (
     <>
       <SidebarHeader>
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
-            <Citrus
-              className="h-8 w-8 text-primary rotate-45"
-              strokeWidth={"1.5"}
-            />
+            <Citrus className="h-8 w-8 text-primary rotate-45" strokeWidth={"1.5"} />
             <div className="flex flex-col">
               <span className="font-light text-3xl text-primary">Lemonade</span>
             </div>
@@ -135,26 +125,19 @@ export function AppSidebar() {
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-4">
             <Avatar className="h-10 w-10">
-              <AvatarImage
-                src="/placeholder.svg?height=32&width=32"
-                alt="Alesha Hyocinth"
-              />
+              <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Alesha Hyocinth" />
               <AvatarFallback>AH</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
               <span className="text-sm font-light">Alesha Hyocinth</span>
-              <span className="text-xs text-sidebar-foreground/70">
-                Project Manager
-              </span>
+              <span className="text-xs text-sidebar-foreground/70">Project Manager</span>
             </div>
           </div>
         </div>
       </SidebarHeader>
       <SidebarContent className="px-4">
         <SidebarGroup className="py-4">
-          <SidebarGroupLabel className="px-4 py-2 font-light">
-            Main Navigation
-          </SidebarGroupLabel>
+          <SidebarGroupLabel className="px-4 py-2 font-light">Main Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNavItems.map((item) => (
@@ -180,11 +163,7 @@ export function AppSidebar() {
         <div className="flex items-center justify-center gap-2 w-full">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-10 w-10 rounded-xl relative"
-              >
+              <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl relative">
                 <Bell className="h-5 w-5" />
                 {unreadCount > 0 && (
                   <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
@@ -209,11 +188,7 @@ export function AppSidebar() {
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-10 w-10 rounded-xl"
-              >
+              <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl">
                 <Info className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
@@ -237,11 +212,7 @@ export function AppSidebar() {
           </DropdownMenu>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-10 w-10 text-destructive"
-              >
+              <Button variant="ghost" size="icon" className="h-10 w-10 text-destructive">
                 <LogOut className="text-destructive w-5 h-5" />
               </Button>
             </AlertDialogTrigger>
@@ -249,8 +220,7 @@ export function AppSidebar() {
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. Are you sure you want to log
-                  out?
+                  This action cannot be undone. Are you sure you want to log out?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -268,7 +238,7 @@ export function AppSidebar() {
         </div>
       </SidebarFooter>
     </>
-  );
+  )
 
   return (
     <>
@@ -288,11 +258,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-10 w-10 rounded-xl relative"
-              >
+              <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl relative">
                 <Bell className="h-5 w-5" />
                 {unreadCount > 0 && (
                   <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
@@ -301,10 +267,7 @@ export function AppSidebar() {
                 )}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              className="w-screen max-w-[100vw] md:max-w-[380px]"
-            >
+            <DropdownMenuContent align="end" className="w-screen max-w-[100vw] md:max-w-[380px]">
               <NotificationsList />
             </DropdownMenuContent>
           </DropdownMenu>
@@ -328,5 +291,5 @@ export function AppSidebar() {
         </Sidebar>
       </div>
     </>
-  );
+  )
 }

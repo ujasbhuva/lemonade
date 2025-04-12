@@ -1,39 +1,9 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Bell,
-  Calendar,
-  MessageSquare,
-  Phone,
-  Plus,
-  Search,
-} from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+"use client"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Bell, Calendar, MessageSquare, Phone, Plus, Search } from "lucide-react"
+import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 // Sample chart data
 const projectStatsData = [
@@ -48,7 +18,7 @@ const projectStatsData = [
   { month: "Sep", lorem: 450000, ipsum: 220000 },
   { month: "Oct", lorem: 500000, ipsum: 320000 },
   { month: "Nov", lorem: 470000, ipsum: 230000 },
-];
+]
 
 const barChartData = [
   { month: "Jan", lorem: 280000, ipsum: 320000 },
@@ -56,7 +26,7 @@ const barChartData = [
   { month: "Mar", lorem: 590000, ipsum: 150000 },
   { month: "Apr", lorem: 290000, ipsum: 420000 },
   { month: "May", lorem: 140000, ipsum: 260000 },
-];
+]
 
 const balanceData = [
   { month: "01", value: 65 },
@@ -65,7 +35,7 @@ const balanceData = [
   { month: "04", value: 40 },
   { month: "05", value: 70 },
   { month: "06", value: 88 },
-];
+]
 
 export default function AnalyticsPage() {
   return (
@@ -105,9 +75,7 @@ export default function AnalyticsPage() {
                 <Bell className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <CardTitle className="text-sm font-light">
-                  Notification
-                </CardTitle>
+                <CardTitle className="text-sm font-light">Notification</CardTitle>
                 <CardDescription>5 Unread notification</CardDescription>
               </div>
             </CardContent>
@@ -143,14 +111,11 @@ export default function AnalyticsPage() {
                 <Plus className="h-5 w-5 text-white" />
               </div>
               <div>
-                <CardTitle className="text-base font-light">
-                  Create New Project
-                </CardTitle>
+                <CardTitle className="text-base font-light">Create New Project</CardTitle>
               </div>
             </CardContent>
           </Card>
         </div>
-
 
         <div className="grid gap-6 md:grid-cols-4 mb-6">
           {/* Client Stats */}
@@ -168,8 +133,7 @@ export default function AnalyticsPage() {
                   <div
                     className="w-12 h-12 rounded-full"
                     style={{
-                      background:
-                        "conic-gradient(hsl(var(--primary)) 76%, #e5e7eb 0)",
+                      background: "conic-gradient(hsl(var(--primary)) 76%, #e5e7eb 0)",
                     }}
                   >
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center text-xs font-medium">
@@ -188,16 +152,11 @@ export default function AnalyticsPage() {
                 <div>
                   <h3 className="text-base font-light">Total Task Done</h3>
                   <div className="text-3xl font-bold mt-2">34</div>
-                  <div className="text-sm text-muted-foreground mt-1">
-                    87 left from target
-                  </div>
+                  <div className="text-sm text-muted-foreground mt-1">87 left from target</div>
                 </div>
               </div>
               <div className="w-full h-3 bg-accent rounded-full overflow-hidden ">
-                <div
-                  className="h-full bg-primary"
-                  style={{ width: "40%" }}
-                ></div>
+                <div className="h-full bg-primary" style={{ width: "40%" }}></div>
               </div>
             </CardContent>
           </Card>
@@ -207,28 +166,13 @@ export default function AnalyticsPage() {
             <CardContent className="p-6">
               <h3 className="text-base font-light mb-2">Total Clients</h3>
               <div className="text-3xl font-bold">565</div>
-              <div className="text-sm text-red-500 mb-4">
-                -3% than last month
-              </div>
+              <div className="text-sm text-red-500 mb-4">-3% than last month</div>
               <div className="h-12">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart
-                    data={[
-                      { value: 10 },
-                      { value: 15 },
-                      { value: 25 },
-                      { value: 20 },
-                      { value: 30 },
-                      { value: 22 },
-                    ]}
+                    data={[{ value: 10 }, { value: 15 }, { value: 25 }, { value: 20 }, { value: 30 }, { value: 22 }]}
                   >
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke="hsl(var(--primary))"
-                      strokeWidth={2}
-                      dot={false}
-                    />
+                    <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -240,35 +184,19 @@ export default function AnalyticsPage() {
             <CardContent className="p-6">
               <h3 className="text-base font-light mb-2">New Projects</h3>
               <div className="text-3xl font-bold">565</div>
-              <div className="text-sm text-green-600 mb-4">
-                +0.5% than last month
-              </div>
+              <div className="text-sm text-green-600 mb-4">+0.5% than last month</div>
               <div className="h-12">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart
-                    data={[
-                      { value: 15 },
-                      { value: 25 },
-                      { value: 20 },
-                      { value: 30 },
-                      { value: 40 },
-                      { value: 35 },
-                    ]}
+                    data={[{ value: 15 }, { value: 25 }, { value: 20 }, { value: 30 }, { value: 40 }, { value: 35 }]}
                   >
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke="hsl(var(--primary))"
-                      strokeWidth={2}
-                      dot={false}
-                    />
+                    <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
             </CardContent>
           </Card>
         </div>
-
 
         <div className="grid gap-6 md:grid-cols-3 mb-6">
           {/* Project Statistics Chart */}
@@ -294,18 +222,8 @@ export default function AnalyticsPage() {
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={projectStatsData}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis
-                        dataKey="month"
-                        axisLine={false}
-                        tickLine={false}
-                        dy={10}
-                      />
-                      <YAxis
-                        axisLine={false}
-                        tickLine={false}
-                        tickFormatter={(value) => `${value / 1000}k`}
-                        dx={-10}
-                      />
+                      <XAxis dataKey="month" axisLine={false} tickLine={false} dy={10} />
+                      <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `${value / 1000}k`} dx={-10} />
                       <Tooltip
                         contentStyle={{
                           borderRadius: "16px",
@@ -338,32 +256,18 @@ export default function AnalyticsPage() {
               {/* Current Balance Card */}
               <Card>
                 <CardHeader className="px-6 pt-6">
-                  <CardTitle className="text-base font-light">
-                    Current Balance
-                  </CardTitle>
+                  <CardTitle className="text-base font-light">Current Balance</CardTitle>
                 </CardHeader>
                 <CardContent className="px-6 pb-6">
                   <div className="mb-2">
                     <h3 className="text-3xl font-bold">$ 25,456.44</h3>
-                    <p className="text-sm text-green-600">
-                      +3.2 than last week
-                    </p>
+                    <p className="text-sm text-green-600">+3.2 than last week</p>
                   </div>
                   <div className="h-[180px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={balanceData} barGap={10}>
-                        <XAxis
-                          dataKey="month"
-                          axisLine={false}
-                          tickLine={false}
-                          dy={10}
-                        />
-                        <Bar
-                          dataKey="value"
-                          fill="#22C55E"
-                          radius={[4, 4, 0, 0]}
-                          barSize={20}
-                        />
+                        <XAxis dataKey="month" axisLine={false} tickLine={false} dy={10} />
+                        <Bar dataKey="value" fill="#22C55E" radius={[4, 4, 0, 0]} barSize={20} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -380,22 +284,17 @@ export default function AnalyticsPage() {
                       style={{
                         clipPath: "polygon(0 0, 50% 0, 50% 50%, 0 50%)",
                         transform: "rotate(90deg)",
-                        background:
-                          "conic-gradient(from 0deg, hsl(var(--primary)) 50%, transparent 0%)",
+                        background: "conic-gradient(from 0deg, hsl(var(--primary)) 50%, transparent 0%)",
                       }}
                     ></div>
                     <div className="absolute inset-4 rounded-full bg-white flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-xl font-bold">On Progress</div>
-                        <div className="text-3xl font-bold text-primary">
-                          50%
-                        </div>
+                        <div className="text-3xl font-bold text-primary">50%</div>
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-xl font-medium mb-1">
-                    Workload Dashboard
-                  </h3>
+                  <h3 className="text-xl font-medium mb-1">Workload Dashboard</h3>
                   <p className="text-base font-light mb-1">For CMS Website</p>
                   <p className="text-sm text-muted-foreground text-center">
                     Praesent eu dolor eu orci vehiculo euismod.
@@ -409,9 +308,7 @@ export default function AnalyticsPage() {
               <CardHeader className="px-6 pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="font-light">
-                      Upcoming Meetings
-                    </CardTitle>
+                    <CardTitle className="font-light">Upcoming Meetings</CardTitle>
                   </div>
                   <Select defaultValue="september">
                     <SelectTrigger className="w-[160px] rounded-full">
@@ -476,18 +373,14 @@ export default function AnalyticsPage() {
               <CardContent className="px-6 pb-6">
                 <div className="space-y-4">
                   <div className="flex">
-                    <div className="w-20 text-sm text-muted-foreground">
-                      10:00
-                    </div>
+                    <div className="w-20 text-sm text-muted-foreground">10:00</div>
                     <div className="flex-1 bg-orange-200 rounded-xl p-3 text-orange-800">
                       <p className="font-medium">iOS Dev team meeting</p>
                       <p className="text-sm">10:00 - 11:00</p>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="w-20 text-sm text-muted-foreground">
-                      11:00
-                    </div>
+                    <div className="w-20 text-sm text-muted-foreground">11:00</div>
                     <div className="flex flex-1 gap-2">
                       <div className="flex-1 bg-amber-200 rounded-xl p-3 text-amber-800">
                         <p className="font-medium">Design meeting</p>
@@ -507,17 +400,12 @@ export default function AnalyticsPage() {
             <Card className="bg-indigo-600 text-white rounded-3xl">
               <CardContent className="flex flex-col justify-between h-full p-6">
                 <div>
-                  <h2 className="text-2xl font-light mb-2">
-                    Manage your project in one touch
-                  </h2>
+                  <h2 className="text-2xl font-light mb-2">Manage your project in one touch</h2>
                   <p className="text-sm text-indigo-100 mb-6">
-                    Etiam facilisis ligula nec velit posuere egestas. Nunc
-                    dictum
+                    Etiam facilisis ligula nec velit posuere egestas. Nunc dictum
                   </p>
                 </div>
-                <Button className="bg-white text-primary hover:bg-white/90 self-start">
-                  Try For Free Now
-                </Button>
+                <Button className="bg-white text-primary hover:bg-white/90 self-start">Try For Free Now</Button>
               </CardContent>
             </Card>
           </div>
@@ -532,18 +420,8 @@ export default function AnalyticsPage() {
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={barChartData} barGap={20}>
-                  <XAxis
-                    dataKey="month"
-                    axisLine={false}
-                    tickLine={false}
-                    dy={10}
-                  />
-                  <YAxis
-                    axisLine={false}
-                    tickLine={false}
-                    tickFormatter={(value) => `${value / 1000}k`}
-                    dx={-10}
-                  />
+                  <XAxis dataKey="month" axisLine={false} tickLine={false} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `${value / 1000}k`} dx={-10} />
                   <Tooltip
                     contentStyle={{
                       borderRadius: "16px",
@@ -551,18 +429,8 @@ export default function AnalyticsPage() {
                     }}
                     formatter={(value) => [`${value.toLocaleString()}`, ""]}
                   />
-                  <Bar
-                    dataKey="lorem"
-                    fill="#818cf8"
-                    radius={[4, 4, 0, 0]}
-                    barSize={30}
-                  />
-                  <Bar
-                    dataKey="ipsum"
-                    fill="#fcd34d"
-                    radius={[4, 4, 0, 0]}
-                    barSize={30}
-                  />
+                  <Bar dataKey="lorem" fill="#818cf8" radius={[4, 4, 0, 0]} barSize={30} />
+                  <Bar dataKey="ipsum" fill="#fcd34d" radius={[4, 4, 0, 0]} barSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -570,5 +438,5 @@ export default function AnalyticsPage() {
         </Card>
       </main>
     </div>
-  );
+  )
 }

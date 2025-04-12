@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Chart as ChartJS,
@@ -15,7 +15,7 @@ import {
   PieController,
   ArcElement,
 } from "chart.js"
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { Bar, Line, Pie } from "react-chartjs-2"
 
 ChartJS.register(
@@ -116,12 +116,11 @@ const areaData = {
 }
 
 export function AnalyticsChart({ type }: AnalyticsChartProps) {
-
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(0)
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-  }, []);
+    setWidth(window.innerWidth)
+  }, [])
 
   const chartHeight = type === "pie" ? 240 : 350
 
@@ -177,4 +176,3 @@ export function AnalyticsChart({ type }: AnalyticsChartProps) {
       return null
   }
 }
-

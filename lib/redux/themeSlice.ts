@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { createSlice } from "@reduxjs/toolkit"
 
@@ -44,4 +44,3 @@ export const themeSlice = createSlice({
 
 export const { toggleTheme } = themeSlice.actions
 export default themeSlice.reducer
-

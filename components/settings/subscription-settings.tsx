@@ -1,26 +1,15 @@
-"use client";
+"use client"
 
-import { Check } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 const plans = [
   {
     name: "Basic",
     price: "$9",
     description: "Perfect for individuals and small teams",
-    features: [
-      "Up to 5 team members",
-      "Basic project management",
-      "2GB storage",
-      "Email support",
-    ],
+    features: ["Up to 5 team members", "Basic project management", "2GB storage", "Email support"],
     current: false,
   },
   {
@@ -52,7 +41,7 @@ const plans = [
     ],
     current: false,
   },
-];
+]
 
 export function SubscriptionSettings() {
   return (
@@ -60,10 +49,7 @@ export function SubscriptionSettings() {
       <div className="w-3/4 flex flex-col gap-6">
         <div className="grid gap-6 md:grid-cols-3">
           {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={plan.current ? "border-primary" : ""}
-            >
+            <Card key={plan.name} className={plan.current ? "border-primary" : ""}>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   {plan.name}
@@ -80,10 +66,7 @@ export function SubscriptionSettings() {
                     </li>
                   ))}
                 </ul>
-                <Button
-                  className="w-full rounded-full"
-                  variant={plan.current ? "outline" : "default"}
-                >
+                <Button className="w-full rounded-full" variant={plan.current ? "outline" : "default"}>
                   {plan.current ? "Current Plan" : "Upgrade"}
                 </Button>
               </CardContent>
@@ -94,18 +77,14 @@ export function SubscriptionSettings() {
         <Card>
           <CardHeader>
             <CardTitle>Billing Information</CardTitle>
-            <CardDescription>
-              Your subscription will renew on September 1, 2024
-            </CardDescription>
+            <CardDescription>Your subscription will renew on September 1, 2024</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="rounded-xl bg-muted p-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium">Pro Plan</p>
-                  <p className="text-sm text-muted-foreground">
-                    Next billing date: September 1, 2024
-                  </p>
+                  <p className="text-sm text-muted-foreground">Next billing date: September 1, 2024</p>
                 </div>
                 <Button variant="outline" className="rounded-full">
                   Cancel Subscription
@@ -116,6 +95,5 @@ export function SubscriptionSettings() {
         </Card>
       </div>
     </div>
-  );
+  )
 }
-

@@ -1,16 +1,16 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 export interface Notification {
-  id: string;
-  title: string;
-  description: string;
-  type: "default" | "success" | "error" | "warning" | "info";
-  read: boolean;
-  timestamp: string;
+  id: string
+  title: string
+  description: string
+  type: "default" | "success" | "error" | "warning" | "info"
+  read: boolean
+  timestamp: string
 }
 
 interface NotificationState {
-  notifications: Notification[];
+  notifications: Notification[]
 }
 
 const initialState: NotificationState = {
@@ -40,47 +40,35 @@ const initialState: NotificationState = {
       timestamp: new Date(Date.now() - 1000 * 60 * 60).toISOString(), // 1 hour ago
     },
   ],
-};
+}
 
 export const notificationSlice = createSlice({
   name: "notifications",
   initialState,
   reducers: {
     markAsRead: (state, action: PayloadAction<string>) => {
-      const notification = state.notifications.find(
-        (n) => n.id === action.payload
-      );
+      const notification = state.notifications.find((n) => n.id === action.payload)
       if (notification) {
-        notification.read = true;
+        notification.read = true
       }
     },
     markAllAsRead: (state) => {
       state.notifications.forEach((notification) => {
-        notification.read = true;
-      });
+        notification.read = true
+      })
     },
     removeNotification: (state, action: PayloadAction<string>) => {
-      state.notifications = state.notifications.filter(
-        (n) => n.id !== action.payload
-      );
+      state.notifications = state.notifications.filter((n) => n.id !== action.payload)
     },
-    addNotification: (
-      state,
-      action: PayloadAction<Omit<Notification, "id" | "timestamp">>
-    ) => {
+    addNotification: (state, action: PayloadAction<Omit<Notification, "id" | "timestamp">>) => {
       state.notifications.unshift({
         ...action.payload,
         id: Date.now().toString(),
         timestamp: new Date().toISOString(),
-      });
+      })
     },
   },
-});
+})
 
-export const {
-  markAsRead,
-  markAllAsRead,
-  removeNotification,
-  addNotification,
-} = notificationSlice.actions;
-export default notificationSlice.reducer;
+export const { markAsRead, markAllAsRead, removeNotification, addNotification } = notificationSlice.actions
+export default notificationSlice.reducer

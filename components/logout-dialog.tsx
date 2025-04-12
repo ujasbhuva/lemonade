@@ -134,4 +134,3 @@ export function Logout({ open, onOpenChange }: LogoutProps) {
     </Dialog>
   )
 }
-

@@ -586,4 +586,3 @@ export const trialEndingEmailCode = `<!DOCTYPE html>
   <!-- Trial ending email template code would go here -->
 </body>
 </html>`
-

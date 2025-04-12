@@ -27,4 +27,3 @@ export function EmailTemplatePreview({ templateId }: EmailTemplatePreviewProps) 
       return <div>Template not found</div>
   }
 }
-

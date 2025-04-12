@@ -67,4 +67,3 @@ export function NewProjectDialog({ open, onOpenChange }: NewProjectDialogProps) 
     </Dialog>
   )
 }
-

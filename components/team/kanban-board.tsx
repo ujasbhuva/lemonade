@@ -309,4 +309,3 @@ export function KanbanBoard({ searchQuery }: KanbanBoardProps) {
     </DragDropContext>
   )
 }
-

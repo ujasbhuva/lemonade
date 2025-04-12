@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function DocumentationPage() {
   return (
@@ -24,9 +18,8 @@ export default function DocumentationPage() {
             <div className="space-y-2">
               <h2 className="text-xl font-semibold">Introduction</h2>
               <p className="text-muted-foreground">
-                Lemonade is a comprehensive project management solution designed
-                to help teams collaborate effectively and track progress
-                efficiently.
+                Lemonade is a comprehensive project management solution designed to help teams collaborate effectively
+                and track progress efficiently.
               </p>
             </div>
             <div className="space-y-2">
@@ -92,8 +85,7 @@ export default function DocumentationPage() {
                 <div className="space-y-2">
                   <h3 className="font-semibold">Authentication</h3>
                   <p className="text-muted-foreground">
-                    API requests are authenticated using Bearer tokens. Obtain
-                    your API key from the settings page.
+                    API requests are authenticated using Bearer tokens. Obtain your API key from the settings page.
                   </p>
                 </div>
                 <div className="space-y-2">
@@ -111,5 +103,5 @@ export default function DocumentationPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }

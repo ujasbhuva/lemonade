@@ -9,35 +9,40 @@ const templates = [
     id: "welcome",
     name: "Welcome Email",
     description: "Send to new users after they sign up",
-    preview: "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    preview:
+      "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "onboarding",
   },
   {
     id: "invoice",
     name: "Invoice",
     description: "Monthly billing notification",
-    preview: "https://images.unsplash.com/photo-1618397746666-63405ce5d015?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    preview:
+      "https://images.unsplash.com/photo-1618397746666-63405ce5d015?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "billing",
   },
   {
     id: "newsletter",
     name: "Newsletter",
     description: "Monthly product updates and news",
-    preview: "https://images.unsplash.com/photo-1640102371408-5fc0c42a8792?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8",
+    preview:
+      "https://images.unsplash.com/photo-1640102371408-5fc0c42a8792?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8",
     category: "marketing",
   },
   {
     id: "verification",
     name: "Email Verification",
     description: "Verify user email addresses",
-    preview: "https://images.unsplash.com/photo-1618172193763-c511deb635ca?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D",
+    preview:
+      "https://images.unsplash.com/photo-1618172193763-c511deb635ca?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D",
     category: "account",
   },
   {
     id: "trial-ending",
     name: "Trial Ending Soon",
     description: "Notify users before their trial expires",
-    preview: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM2fHx8ZW58MHx8fHx8",
+    preview:
+      "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM2fHx8ZW58MHx8fHx8",
     category: "billing",
   },
 ]
@@ -132,4 +137,3 @@ export default function EmailTemplatesPage() {
     </div>
   )
 }
-

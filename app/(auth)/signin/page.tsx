@@ -1,43 +1,30 @@
-"use client";
+"use client"
 
-import loginAnimation from "@/animations/login.json"; // You'll need to add this JSON file
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Citrus } from "lucide-react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import loginAnimation from "@/animations/login.json" // You'll need to add this JSON file
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ArrowRight, Citrus } from "lucide-react"
+import dynamic from "next/dynamic"
+import Link from "next/link"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false })
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import ThemeToggle from "@/components/ui/theme-toggle";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import ThemeToggle from "@/components/ui/theme-toggle"
 
 // Login validation schema
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   password: z.string().min(1, { message: "Password is required" }),
-});
+})
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false)
 
   // Form for login
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -46,32 +33,32 @@ export default function LoginPage() {
       email: "",
       password: "",
     },
-  });
+  })
 
   // Handle login submission
   function onSubmit(values: z.infer<typeof loginSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
 
     // Simulate API call for login
     setTimeout(() => {
-      console.log("Login:", values);
+      console.log("Login:", values)
       // Redirect to dashboard after successful login
-      window.location.href = "/app/dashboard";
-      setIsLoading(false);
-    }, 1500);
+      window.location.href = "/app/dashboard"
+      setIsLoading(false)
+    }, 1500)
   }
 
   // Handle Google login
   function handleGoogleLogin() {
-    setIsLoading(true);
+    setIsLoading(true)
 
     // Simulate API call for Google login
     setTimeout(() => {
-      console.log("Google login");
+      console.log("Google login")
       // Redirect to dashboard after successful login
-      window.location.href = "/app/dashboard";
-      setIsLoading(false);
-    }, 1500);
+      window.location.href = "/app/dashboard"
+      setIsLoading(false)
+    }, 1500)
   }
 
   return (
@@ -79,10 +66,7 @@ export default function LoginPage() {
       <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-full md:w-4/5 lg:w-3/4 xl:w-2/3 max-w-5xl">
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
-            <Citrus
-              className="h-8 w-8 text-primary rotate-45"
-              strokeWidth={"1.5"}
-            />
+            <Citrus className="h-8 w-8 text-primary rotate-45" strokeWidth={"1.5"} />
             <div className="flex flex-col">
               <span className="font-light text-3xl text-primary">Lemonade</span>
             </div>
@@ -93,19 +77,12 @@ export default function LoginPage() {
           <div className="w-full md:w-1/2 p-2">
             <ThemeToggle />
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-light text-center">
-                Sign in
-              </CardTitle>
-              <CardDescription className="text-center">
-                Enter your credentials to access your account
-              </CardDescription>
+              <CardTitle className="text-2xl font-light text-center">Sign in</CardTitle>
+              <CardDescription className="text-center">Enter your credentials to access your account</CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
               <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-4"
-                >
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
                     control={form.control}
                     name="email"
@@ -113,11 +90,7 @@ export default function LoginPage() {
                       <FormItem>
                         <FormLabel className="font-light px-1">Email</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="name@example.com"
-                            className="rounded-xl px-5"
-                            {...field}
-                          />
+                          <Input placeholder="name@example.com" className="rounded-xl px-5" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -129,36 +102,19 @@ export default function LoginPage() {
                     render={({ field }) => (
                       <FormItem>
                         <div className="flex items-center justify-between">
-                          <FormLabel className="font-light px-1">
-                            Password
-                          </FormLabel>
-                          <Button
-                            variant="link"
-                            className="px-0 font-light h-auto text-xs"
-                            asChild
-                          >
-                            <Link href="/forgot-password">
-                              Forgot password?
-                            </Link>
+                          <FormLabel className="font-light px-1">Password</FormLabel>
+                          <Button variant="link" className="px-0 font-light h-auto text-xs" asChild>
+                            <Link href="/forgot-password">Forgot password?</Link>
                           </Button>
                         </div>
                         <FormControl>
-                          <Input
-                            type="password"
-                            placeholder="••••••••"
-                            className="rounded-xl px-5"
-                            {...field}
-                          />
+                          <Input type="password" placeholder="••••••••" className="rounded-xl px-5" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button
-                    type="submit"
-                    className="w-full rounded-xl"
-                    disabled={isLoading}
-                  >
+                  <Button type="submit" className="w-full rounded-xl" disabled={isLoading}>
                     {isLoading ? "Signing in..." : "Sign In"}
                     {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
                   </Button>
@@ -170,9 +126,7 @@ export default function LoginPage() {
                   <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs">
-                  <span className="bg-background px-2 text-muted-foreground">
-                    or
-                  </span>
+                  <span className="bg-background px-2 text-muted-foreground">or</span>
                 </div>
               </div>
 
@@ -209,11 +163,7 @@ export default function LoginPage() {
           {/* Right side - Lottie Animation */}
           <div className="hidden md:flex md:w-1/2 bg-primary/5 items-center justify-center">
             <div className="relative w-full h-full flex items-center justify-center">
-              <Lottie
-                animationData={loginAnimation}
-                loop={true}
-                className="w-full max-w-md"
-              />
+              <Lottie animationData={loginAnimation} loop={true} className="w-full max-w-md" />
             </div>
           </div>
         </Card>
@@ -225,5 +175,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

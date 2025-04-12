@@ -218,18 +218,36 @@ export function NewsletterTemplate() {
               }}
             >
               <tr>
-                <td style={{ borderBottom: "1px solid #E2E8F0"}}>
-                  <h2 style={{ color: "#2D3748", fontSize: "18px", margin: "0", fontWeight: "normal", padding: "10px" }}>
+                <td style={{ borderBottom: "1px solid #E2E8F0" }}>
+                  <h2
+                    style={{ color: "#2D3748", fontSize: "18px", margin: "0", fontWeight: "normal", padding: "10px" }}
+                  >
                     Tip of the Month
                   </h2>
                 </td>
               </tr>
               <tr>
                 <td style={{ padding: "10px 0" }}>
-                  <h3 style={{ color: "#2D3748", fontSize: "16px", margin: "0 0 10px 0", fontWeight: "bold",padding: "10px" }}>
+                  <h3
+                    style={{
+                      color: "#2D3748",
+                      fontSize: "16px",
+                      margin: "0 0 10px 0",
+                      fontWeight: "bold",
+                      padding: "10px",
+                    }}
+                  >
                     Keyboard Shortcuts to Boost Productivity
                   </h3>
-                  <p style={{ fontSize: "14px", lineHeight: "1.5", color: "#4A5568", margin: "0 0 15px 0", padding: "10px" }}>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: "1.5",
+                      color: "#4A5568",
+                      margin: "0 0 15px 0",
+                      padding: "10px",
+                    }}
+                  >
                     Did you know you can use Ctrl+Shift+P (or Cmd+Shift+P on Mac) to quickly access the command palette?
                     This gives you instant access to over 50 actions without navigating through menus.
                   </p>
@@ -240,7 +258,7 @@ export function NewsletterTemplate() {
                       textDecoration: "none",
                       fontSize: "14px",
                       fontWeight: "bold",
-                      padding: "10px"
+                      padding: "10px",
                     }}
                   >
                     View all keyboard shortcuts →
@@ -325,4 +343,3 @@ export function NewsletterTemplate() {
     </div>
   )
 }
-

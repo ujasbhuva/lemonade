@@ -51,4 +51,3 @@ export function Notification({ className, variant, title, description, icon, ...
     </div>
   )
 }
-

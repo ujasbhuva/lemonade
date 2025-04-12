@@ -1,56 +1,46 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import ThemeToggle from "@/components/ui/theme-toggle";
-import { Citrus } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import ThemeToggle from "@/components/ui/theme-toggle"
+import { Citrus } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
 
 export default function ForgotPasswordPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [stage, setStage] = useState("email"); // 'email' or 'reset'
-  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const [stage, setStage] = useState("email") // 'email' or 'reset'
+  const [email, setEmail] = useState("")
 
   const handleSendResetLink = () => {
-    if (!email) return;
-    setIsLoading(true);
+    if (!email) return
+    setIsLoading(true)
 
     // Simulate API call
     setTimeout(() => {
-      setIsLoading(false);
-      setStage("reset");
-    }, 1500);
-  };
+      setIsLoading(false)
+      setStage("reset")
+    }, 1500)
+  }
 
   const handleResetPassword = () => {
-    setIsLoading(true);
+    setIsLoading(true)
 
     // Simulate API call
     setTimeout(() => {
-      setIsLoading(false);
-      window.location.href = "/signin";
-    }, 1500);
-  };
+      setIsLoading(false)
+      window.location.href = "/signin"
+    }, 1500)
+  }
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:w-[350px]">
         <Link href="/">
           <div className="flex items-center px-6 py-4 w-full justify-center">
-            <Citrus
-              className="h-8 w-8 text-primary rotate-45"
-              strokeWidth={"1.5"}
-            />
+            <Citrus className="h-8 w-8 text-primary rotate-45" strokeWidth={"1.5"} />
             <div className="flex flex-col">
               <span className="font-light text-3xl text-primary">Lemonade</span>
             </div>
@@ -64,9 +54,7 @@ export default function ForgotPasswordPage() {
               {stage === "email" ? "Forgot password?" : "Reset password"}
             </CardTitle>
             <CardDescription className="text-center">
-              {stage === "email"
-                ? "No worries, we'll send you reset instructions"
-                : "Enter your new password below"}
+              {stage === "email" ? "No worries, we'll send you reset instructions" : "Enter your new password below"}
             </CardDescription>
           </CardHeader>
 
@@ -103,24 +91,14 @@ export default function ForgotPasswordPage() {
                   <Label htmlFor="new-password" className="font-light px-1">
                     New Password
                   </Label>
-                  <Input
-                    id="new-password"
-                    type="password"
-                    className="rounded-xl px-5"
-                    required
-                  />
+                  <Input id="new-password" type="password" className="rounded-xl px-5" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="confirm-password" className="font-light px-1">
                     Confirm Password
                   </Label>
-                  <Input
-                    id="confirm-password"
-                    type="password"
-                    className="rounded-xl px-5"
-                    required
-                  />
+                  <Input id="confirm-password" type="password" className="rounded-xl px-5" required />
                 </div>
 
                 <div className="flex flex-col gap-2 text-sm">
@@ -138,12 +116,7 @@ export default function ForgotPasswordPage() {
                   </div>
                 </div>
 
-                <Button
-                  type="button"
-                  className="w-full rounded-xl"
-                  onClick={handleResetPassword}
-                  disabled={isLoading}
-                >
+                <Button type="button" className="w-full rounded-xl" onClick={handleResetPassword} disabled={isLoading}>
                   {isLoading ? "Resetting..." : "Reset Password"}
                 </Button>
               </div>
@@ -161,5 +134,5 @@ export default function ForgotPasswordPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
